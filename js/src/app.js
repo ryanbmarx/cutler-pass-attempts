@@ -37,7 +37,6 @@ function collectChoices(){
         })
         flatChoices[key] = values;
     })
-    // console.log("FLAT CHOICES:", flatChoices);
     return flatChoices;
 }
 
@@ -56,7 +55,6 @@ function filterData(){
                 return false;
             })
         });
-        // console.log(filteredData);
         window.filteredTotal = filteredData.length;
         return aggregateData(filteredData);    
 }
@@ -96,7 +94,6 @@ function aggregateData(data){
         let tempRow =  _.countBy(groupedRows[row], pass => pass.FIELD_TARGET);
         groupedRows[row] = tempRow;
     })
-    // console.log("FLAT GROUP ROWS", groupedRows);
     return groupedRows;
 }   
 
@@ -124,13 +121,13 @@ function initChart(){
 }
 
 function visualizeData(data){
+    console.log('Redrawing chart');
     console.log(data);
     var passes = document.querySelectorAll('.passes__circle');
     passes.forEach(function(pass) {
         let column = pass.dataset.column;
         let row = pass.dataset.row;
         let passTotal = 0;
-        console.log(row, column);
         if (data[column] != undefined && data[column][row] != undefined && data[column][row] > 0){
             passTotal = data[column][row];
         }
@@ -181,17 +178,50 @@ window.onload = function(){
             e.preventDefault();
             let button = e.target;
             let classlist = button.classList;
+
+            // Toggle the checked class on the actual button
             if(classlist.contains('button--checked')){
                 button.classList.remove('button--checked');
             } else {
                 button.classList.add('button--checked');
             }
+
+            // If this is the only checked filter option, then activate/un-mute the submit button(s).
+            // If there are no checked filter options, then re-mute the submit button.
+            let submitButtons = document.getElementsByClassName('control-button__submit');
+            if (document.getElementsByClassName('button--checked').length > 0){
+                for (var submit of submitButtons){
+                    submit.classList.remove('muted');
+                    submit.classList.add('active');
+                }
+            } else {
+                for (var submit of submitButtons){
+                    submit.classList.add('muted');
+                    submit.classList.remove('muted');
+                }
+            }
         })
     }
-    document.getElementById('submit').addEventListener('click', e => {
-        e.preventDefault();
-        drawChart();
-    })
+
+    // Set up the event listener for the submit buttons. At load, the button is muted with class "muted"
+    // but that class is removed when the first filter option is selected. The class "active" is added, and
+    // is required by the function for the event listener.
+
+    let submitButtons = document.getElementsByClassName('control-button__submit');
+
+    for (var submit of submitButtons){
+        submit.addEventListener('click', function(e) {
+            e.preventDefault();
+            if(submit.classList.contains('active')){
+                // Only draw the chart if the button is active, i.e. the user has made filter selections.
+                drawChart();
+            } else {
+                console.log("No selections made, don't redraw");
+            }
+        })  
+    }
+        
+     
 	d3.csv(`//${window.ROOT_URL}/data/pass-attempts.csv`, data => {
         // Start by taking the main data file, slicing off the header_descriotons row.
         window.base_data = data.splice(1, data.length - 1);
