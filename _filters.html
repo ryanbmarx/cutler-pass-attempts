@@ -6,6 +6,7 @@
 	</div> #}
 	<div class='filters__section filters__section--pass-result'>
 		<h3 class='filters__label'>Pass Result</h3>
+		<p><em>TK: Yards in air, YAC</em></p>
 		<a class='button' href="#" data-filter-category='INT' data-filter-value=1>INT</a>
 		<a class='button' href="#" data-filter-category='INT' data-filter-value=0>NO INT</a>
 		<a class='button' href="#" data-filter-category='COMPLETION' data-filter-value=1>COMPLETE</a>
@@ -18,6 +19,7 @@
 
 	<div class='filters__section filters__section--game-situation'>
 		<h3 class='filters__label'>Game situation</h3>
+		<p><em>TK: Yards to go</em></p>
 		<a class='button' href="#" data-filter-category='QB_POSITION' data-filter-value="Shotgun">Shotgun</a>
 		<a class='button' href="#" data-filter-category='QB_POSITION' data-filter-value="Pistol">Pistol</a>
 		<a class='button' href="#" data-filter-category='QB_POSITION' data-filter-value="Under Center">Under center</a>		
@@ -36,6 +38,7 @@
 	</div>
 	<div class='filters__section filters__section--schedule'>
 		<h3 class='filters__label'>Schedule</h3>
+		<p><em>TK: Year, season week</em></p>
 		<a class='button' href="#" data-filter-category='WEEKDAY' data-filter-value=5>Thursday</a>
 		<a class='button' href="#" data-filter-category='WEEKDAY' data-filter-value=7>Saturday</a>
 		<a class='button' href="#" data-filter-category='WEEKDAY' data-filter-value=1>Sunday</a>
@@ -50,7 +53,7 @@
 	</div>
 	<div class='filters__section filters__section--opponent'>
 		<h3 class='filters__label'>Opponents</h3>
-		{% for opponent in opponents %}
+		{% for opponent in opponents|sort(attribute="team") %}
 			<a class='button' href="#" data-filter-category='OPP' data-filter-value="{{opponent.team}}">{{ opponent.team }}</a> 
 		{% endfor %}
 	</div>
