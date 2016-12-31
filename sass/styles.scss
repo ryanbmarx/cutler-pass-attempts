@@ -1,0 +1,233 @@
+// Enables for Tribune colors, but is required for everything.
+@import 'base-variables';
+$column_dimension:80px;
+$chart_width:($column_dimension * 6) + 30px;
+$circle_dimension:1px;
+
+// ---- ADD MORE VARIABLES HERE ---------------------------------------------
+
+// Required for everything, too, but can be broken down into smaller explicit imports if desired. 
+@import 'base-mixins';
+// ---- MAKE OR IMPORT MORE MIXINS HERE ---------------------------------------------
+
+
+// Class imports. Uncomment the ones you want to use.
+// @import 'ngux-visibility-toggles';
+// @import 'trib-bulletbox';
+// @import 'trib-buttons';
+// @import 'trib-colors';
+// @import 'trib-images-charts';
+// @import 'trib-legends';
+// @import 'trib-skeleton';
+// @import 'trib-tables';
+// @import 'trib-timeline-basic';
+// @import 'trib-typography';
+// @import 'trib-utilities';
+
+
+// ---- IMPORT PROJECT STYLES FROM PARTIAL FILES HERE ---------------------------------------------
+@import 'cutler-loader';
+
+
+// ---- WRITE MORE PROJECT STYLES HERE ---------------------------------------------
+
+// .chart{
+// 	width: $chart_width;
+// 	background-color:#eee;
+// }
+
+
+.trb_mainContent .notes p{
+	@include agate();
+}
+
+
+.passes{
+	max-width:$chart_width;
+	margin: 0 auto;
+	border:12px solid rgba($trib_green1, .4);
+	padding:10px;
+	background-color:rgba($trib_green1, .2);
+
+	&__viz{
+		@include clearfix();
+	}
+}
+
+.passes__row{
+	@include clearfix();
+
+
+}
+
+.passes__column{
+	height:$column_dimension;
+	width:$column_dimension;
+	float:left;
+	position:relative;
+
+	.passes__inner{
+		width:100%;
+		height:100%;
+		display:flex;
+		align-items:center;
+		border-right:1px dashed black;
+		border-bottom:1px dashed black;
+	}
+}
+
+
+
+.passes__row--negativeToZero{
+	border-top:4px solid black;
+}
+
+
+.trb_mainContent .passes__column--label {
+	width:100px;
+	.passes__inner{
+		border-top:none;
+		border-bottom:none;
+
+		p{
+			@include sans-serif();
+			font-weight: bold;
+			max-width: 70px;
+			margin:0;
+			padding:0;
+		}
+	}
+}
+
+
+.trb_mainContent .passes__row--top-labels {
+	.passes__column{
+		height:auto;
+		padding: 10px 0;
+		border-bottom:1px dashed black;	
+		&:first-child{
+			border-bottom:none;	
+		}
+
+	}
+	p{
+		@include sans-serif();
+		font-weight: bold;
+		margin:0;
+		padding:0;
+		text-align:center;
+	}
+}
+.passes__circle{
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	background-color:rgba($bears_orange, .5);
+	border-radius:50%;
+	position:absolute;
+	top:50%;
+	left:50%;
+	height:$circle_dimension;
+	width:$circle_dimension;
+	margin: #{0 - ($circle_dimension / 2)} 0 0 #{0 - ($circle_dimension / 2)};
+	transition: all 400ms;
+
+	.passes__count{
+		@include agate();
+		font-weight:bold;
+	}
+}
+
+.passes__filters{
+	display:flex;
+	justify-content:space-between;
+	flex-wrap:wrap;
+
+	h3{
+		width:100%;
+	}
+}
+
+.trb_mainContent .button{
+	@include agate();
+	padding: 15px 0;
+	margin: 0 0 10px 0;
+	width: 31%;
+	border:1px solid $trib-gray3;
+	background-color:transparent;
+	text-align:center;
+	color:black;
+	transition: all 150ms;
+
+	&:hover{
+		border-color:rgba($bears-blue, .1);
+		background-color:rgba($bears-blue, .3);
+		transition: all 150ms;
+		color:black;
+
+	}
+
+	&.button--checked{
+		background-color:rgba($bears-blue, 1);
+		border-color:rgba($bears-blue, 1);
+		color:white;
+		font-weight: bold;
+		transition: all 150ms;
+	}
+}
+
+#submit{
+	@include sans-serif();
+	display:block;
+	padding: 15px 0;
+	margin: 0 0 10px 0;
+	border:1px solid $trib-gray3;
+	background-color:white;
+	text-align:center;
+	color:black;
+	transition: all 150ms;
+	width:100%;
+	background-color:rgba($bears-orange,.8);
+	color:white;
+	font-weight: bold;
+	&:hover{
+		background-color:rgba($bears-orange,1);
+	}
+}
+
+.trb_mainContent .chart{
+	&__label{
+		@include sans-serif();
+		margin: 0 0 10px 0;
+	}
+
+	&__now-showing, &__total{
+		font-weight: bold;
+	}
+
+	&__bar-wrapper{
+		width:100%;
+		background-color: rgba($bears_orange, .4); 
+	}
+
+	&__bar{
+		height:25px;
+		background-color:$bears_orange;
+		display:flex;
+		justify-content: flex-end;
+		align-items:center;
+
+		small{
+			@include sans-serif();
+			font-weight: bold;
+			padding-right: 5px;
+			color:white;
+		}
+	}
+}
+
+
+
+@media all and (max-width: 850px){
+
+}

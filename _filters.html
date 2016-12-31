@@ -1,0 +1,35 @@
+	<div class='passes__filters'>
+		<a class='button button--selectAll' href="#" >SELECT ALL</a>
+		<a class='button button--selectNone' href="#" >SELECT NONE</a>
+		<a class='button' href="#" data-filter-category='INT' data-filter-value=1>INT</a>
+		<a class='button' href="#" data-filter-category='INT' data-filter-value=0>NO INT</a>
+		<a class='button' href="#" data-filter-category='COMPLETION' data-filter-value=1>COMPLETE</a>
+		<a class='button' href="#" data-filter-category='COMPLETION' data-filter-value=0>INCOMPLETE</a>
+		<a class='button' href="#" data-filter-category='TD' data-filter-value=1>TD</a>
+		<a class='button' href="#" data-filter-category='TD' data-filter-value=0>NOT A TD</a>
+		<a class='button' href="#" data-filter-category='QB_POSITION' data-filter-value="Shotgun">Shotgun</a>
+		<a class='button' href="#" data-filter-category='QB_POSITION' data-filter-value="Pistol">Pistol</a>
+		<a class='button' href="#" data-filter-category='QB_POSITION' data-filter-value="Under Center">Under center</a>
+		<h3>Schedule</h3>
+		<a class='button' href="#" data-filter-category='WEEKDAY' data-filter-value=5>Thursday</a>
+		<a class='button' href="#" data-filter-category='WEEKDAY' data-filter-value=7>Saturday</a>
+		<a class='button' href="#" data-filter-category='WEEKDAY' data-filter-value=1>Sunday</a>
+		<a class='button' href="#" data-filter-category='WEEKDAY' data-filter-value=2>Monday</a>
+		<a class='button' href="#" data-filter-category='TIME_BUCKET' data-filter-value="Early">Early</a>
+		<a class='button' href="#" data-filter-category='TIME_BUCKET' data-filter-value="Late">Late</a>
+		<a class='button' href="#" data-filter-category='TIME_BUCKET' data-filter-value="Primetime">Primetime</a>
+		<a class='button' href="#" data-filter-category='HOME_GAME' data-filter-value=1>At home</a>
+		<a class='button' href="#" data-filter-category='HOME_GAME' data-filter-value=0>On road</a>
+		<a class='button' href="#" data-filter-category='REG_OR_POST' data-filter-value="Reg">Regular Season</a>
+		<a class='button' href="#" data-filter-category='REG_OR_POST' data-filter-value="Post">Postseason</a>
+
+
+		<h3>Opponents</h3>
+		{% for opponent in opponents %}
+			<a class='button' href="#" data-filter-category='OPP' data-filter-value="{{opponent.team}}">{{ opponent.team }}</a> 
+		{% endfor %}
+		<h3>Receivers</h3>
+		{% for receiver in receivers|sort(attribute="name_last") %}
+			<a class='button' href="#" data-filter-category='RECEIVER_ID' data-filter-value="{{receiver.id}}">{{ receiver.name_first }} {{ receiver.name_last }}</a> 
+		{% endfor %}
+	</div>
