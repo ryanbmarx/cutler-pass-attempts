@@ -37,7 +37,7 @@ function collectChoices(){
         })
         flatChoices[key] = values;
     })
-    console.log("FLAT CHOICES:", flatChoices);
+    // console.log("FLAT CHOICES:", flatChoices);
     return flatChoices;
 }
 
@@ -56,7 +56,7 @@ function filterData(){
                 return false;
             })
         });
-        console.log(filteredData);
+        // console.log(filteredData);
         window.filteredTotal = filteredData.length;
         return aggregateData(filteredData);    
 }
@@ -96,7 +96,7 @@ function aggregateData(data){
         let tempRow =  _.countBy(groupedRows[row], pass => pass.FIELD_TARGET);
         groupedRows[row] = tempRow;
     })
-    console.log("FLAT GROUP ROWS", groupedRows);
+    // console.log("FLAT GROUP ROWS", groupedRows);
     return groupedRows;
 }   
 
@@ -124,13 +124,15 @@ function initChart(){
 }
 
 function visualizeData(data){
+    console.log(data);
     var passes = document.querySelectorAll('.passes__circle');
     passes.forEach(function(pass) {
         let column = pass.dataset.column;
         let row = pass.dataset.row;
         let passTotal = 0;
-        if (data[row] != undefined && data[row][column] != undefined && data[row][column] > 0){
-            passTotal = data[row][column];
+        console.log(row, column);
+        if (data[column] != undefined && data[column][row] != undefined && data[column][row] > 0){
+            passTotal = data[column][row];
         }
     
         let scaledPassTotal = window.rScale(passTotal);
@@ -155,8 +157,6 @@ function visualizeData(data){
     // Update the top bar chart
     const barWidthAsPercentage = window.filteredTotal / window.baseTotal;
     const total_width = d3.select('.chart__bar-wrapper').node().getBoundingClientRect().width;
-    // console.log(d3.select('.chart__bar-wrapper').node().getBoundingClientRect());
-    // console.log(typeof(window.filteredTotal), typeof(window.baseTotal), typeof(bar_width));
     d3.select('.chart__bar')
         .transition()
         .duration(1000)
