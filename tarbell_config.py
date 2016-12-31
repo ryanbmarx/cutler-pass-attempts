@@ -3,9 +3,20 @@
 """
 Tarbell project configuration
 """
+from flask import Blueprint, g, render_template
+import ftfy
+import jinja2
+
+blueprint = Blueprint('greatest-team-cubs-sox-poll', __name__)
+
+@blueprint.app_template_filter('get_label_keys')
+def get_label_keys(thing):
+    return type(thing)
+
+
 
 # Google spreadsheet key
-#SPREADSHEET_KEY = "None"
+SPREADSHEET_KEY = "1ZXvIfK-UR8Y6x1dEr7KNs6gLs5M_vxS1yY51hMa39nc"
 
 # Exclude these files from publication
 EXCLUDES = ['*.md', 'requirements.txt', 'node_modules', 'sass', 'js/src', 'package.json', 'Gruntfile.js']

@@ -5,15 +5,15 @@
   "main": "js/src/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "grunt",
-    "watch": "grunt watch"
+    "build": "npm run getCsv && grunt",
+    "watch": "grunt watch",
+    "getCsv": "node scripts/downloadCSV.js 'https://docs.google.com/spreadsheets/d/1ZXvIfK-UR8Y6x1dEr7KNs6gLs5M_vxS1yY51hMa39nc/pub?gid=1292379928&single=true&output=csv' './data/pass-attempts.csv'"
   },
   "repository": {
     "type": "git",
     "url": ""
   },
-  "keywords": [
-  ],
+  "keywords": [],
   "author": "Chicago Tribune News Applications",
   "license": "MIT",
   "devDependencies": {
@@ -30,5 +30,9 @@
   "browserify": {
     "debug": true
   },
-  "tribune": {}
+  "tribune": {},
+  "dependencies": {
+    "d3": "^4.4.0",
+    "underscore": "^1.8.3"
+  }
 }
