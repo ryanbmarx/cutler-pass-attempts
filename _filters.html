@@ -1,66 +1,66 @@
 <h2>Filter by ...</h2>
 <div class='passes__filters filters'>
-{# 	<div class='filters__section filters__section--utility'>
-		<a class='button button--selectAll' href="#" >SELECT ALL (TK)</a>
-		<a class='button button--selectNone' href="#" >SELECT NONE (TK)</a>
-	</div> #}
+	<div class='filters__section filters__section--utility'>
+		<a class='filter-button filter-button--selectAll' href="#" >SELECT ALL (TK)</a>
+		<a class='filter-button filter-button--selectNone' href="#" >SELECT NONE (TK)</a>
+	</div>
 	<div class='filters__section filters__section--pass-result'>
 		<h3 class='filters__label'>Pass Result</h3>
 		<p><em>TK: Yards in air, YAC</em></p>
-		<a class='button' href="#" data-filter-category='INT' data-filter-value=1>INT</a>
-		<a class='button' href="#" data-filter-category='INT' data-filter-value=0>NO INT</a>
-		<a class='button' href="#" data-filter-category='COMPLETION' data-filter-value=1>COMPLETE</a>
-		<a class='button' href="#" data-filter-category='COMPLETION' data-filter-value=0>INCOMPLETE</a>
-		<a class='button' href="#" data-filter-category='TD' data-filter-value=1>TD</a>
-		<a class='button' href="#" data-filter-category='TD' data-filter-value=0>NOT A TD</a>
-		<a class='button' href="#" data-filter-category='FIRST_DOWN' data-filter-value=1>1st down</a>
+		<a class='filter-button' href="#" data-filter-category='INT' data-filter-value=1>INT</a>
+		<a class='filter-button' href="#" data-filter-category='INT' data-filter-value=0>NO INT</a>
+		<a class='filter-button' href="#" data-filter-category='COMPLETION' data-filter-value=1>COMPLETE</a>
+		<a class='filter-button' href="#" data-filter-category='COMPLETION' data-filter-value=0>INCOMPLETE</a>
+		<a class='filter-button' href="#" data-filter-category='TD' data-filter-value=1>TD</a>
+		<a class='filter-button' href="#" data-filter-category='TD' data-filter-value=0>NOT A TD</a>
+		<a class='filter-button' href="#" data-filter-category='FIRST_DOWN' data-filter-value=1>1st down</a>
 
 	</div>
 
 	<div class='filters__section filters__section--game-situation'>
 		<h3 class='filters__label'>Game situation</h3>
 		<p><em>TK: Yards to go</em></p>
-		<a class='button' href="#" data-filter-category='QB_POSITION' data-filter-value="Shotgun">Shotgun</a>
-		<a class='button' href="#" data-filter-category='QB_POSITION' data-filter-value="Pistol">Pistol</a>
-		<a class='button' href="#" data-filter-category='QB_POSITION' data-filter-value="Under Center">Under center</a>		
+		<a class='filter-button' href="#" data-filter-category='QB_POSITION' data-filter-value="Shotgun">Shotgun</a>
+		<a class='filter-button' href="#" data-filter-category='QB_POSITION' data-filter-value="Pistol">Pistol</a>
+		<a class='filter-button' href="#" data-filter-category='QB_POSITION' data-filter-value="Under Center">Under center</a>		
 
-		<a class='button' href="#" data-filter-category='DOWN' data-filter-value=1>1st down</a>		
-		<a class='button' href="#" data-filter-category='DOWN' data-filter-value=2>2nd down</a>		
-		<a class='button' href="#" data-filter-category='DOWN' data-filter-value=3>3rd down</a>		
-		<a class='button' href="#" data-filter-category='DOWN' data-filter-value=4>4th down</a>		
+		<a class='filter-button' href="#" data-filter-category='DOWN' data-filter-value=1>1st down</a>		
+		<a class='filter-button' href="#" data-filter-category='DOWN' data-filter-value=2>2nd down</a>		
+		<a class='filter-button' href="#" data-filter-category='DOWN' data-filter-value=3>3rd down</a>		
+		<a class='filter-button' href="#" data-filter-category='DOWN' data-filter-value=4>4th down</a>		
 
-		<a class='button' href="#" data-filter-category='QTR' data-filter-value=1>1st quarter</a>		
-		<a class='button' href="#" data-filter-category='QTR' data-filter-value=2>2nd quarter</a>		
-		<a class='button' href="#" data-filter-category='QTR' data-filter-value=3>3rd quarter</a>		
-		<a class='button' href="#" data-filter-category='QTR' data-filter-value=4>4th quarter</a>		
-		<a class='button' href="#" data-filter-category='QTR' data-filter-value=5>Overtime</a>
+		<a class='filter-button' href="#" data-filter-category='QTR' data-filter-value=1>1st quarter</a>		
+		<a class='filter-button' href="#" data-filter-category='QTR' data-filter-value=2>2nd quarter</a>		
+		<a class='filter-button' href="#" data-filter-category='QTR' data-filter-value=3>3rd quarter</a>		
+		<a class='filter-button' href="#" data-filter-category='QTR' data-filter-value=4>4th quarter</a>		
+		<a class='filter-button' href="#" data-filter-category='QTR' data-filter-value=5>Overtime</a>
 
 	</div>
 	<div class='filters__section filters__section--schedule'>
 		<h3 class='filters__label'>Schedule</h3>
 		<p><em>TK: Year, season week</em></p>
-		<a class='button' href="#" data-filter-category='WEEKDAY' data-filter-value=5>Thursday</a>
-		<a class='button' href="#" data-filter-category='WEEKDAY' data-filter-value=7>Saturday</a>
-		<a class='button' href="#" data-filter-category='WEEKDAY' data-filter-value=1>Sunday</a>
-		<a class='button' href="#" data-filter-category='WEEKDAY' data-filter-value=2>Monday</a>
-		<a class='button' href="#" data-filter-category='TIME_BUCKET' data-filter-value="Early">Early</a>
-		<a class='button' href="#" data-filter-category='TIME_BUCKET' data-filter-value="Late">Late</a>
-		<a class='button' href="#" data-filter-category='TIME_BUCKET' data-filter-value="Primetime">Primetime</a>
-		<a class='button' href="#" data-filter-category='HOME_GAME' data-filter-value=1>At home</a>
-		<a class='button' href="#" data-filter-category='HOME_GAME' data-filter-value=0>On road</a>
-		<a class='button' href="#" data-filter-category='REG_OR_POST' data-filter-value="Reg">Regular Season</a>
-		<a class='button' href="#" data-filter-category='REG_OR_POST' data-filter-value="Post">Postseason</a>
+		<a class='filter-button' href="#" data-filter-category='WEEKDAY' data-filter-value=5>Thursday</a>
+		<a class='filter-button' href="#" data-filter-category='WEEKDAY' data-filter-value=7>Saturday</a>
+		<a class='filter-button' href="#" data-filter-category='WEEKDAY' data-filter-value=1>Sunday</a>
+		<a class='filter-button' href="#" data-filter-category='WEEKDAY' data-filter-value=2>Monday</a>
+		<a class='filter-button' href="#" data-filter-category='TIME_BUCKET' data-filter-value="Early">Early</a>
+		<a class='filter-button' href="#" data-filter-category='TIME_BUCKET' data-filter-value="Late">Late</a>
+		<a class='filter-button' href="#" data-filter-category='TIME_BUCKET' data-filter-value="Primetime">Primetime</a>
+		<a class='filter-button' href="#" data-filter-category='HOME_GAME' data-filter-value=1>At home</a>
+		<a class='filter-button' href="#" data-filter-category='HOME_GAME' data-filter-value=0>On road</a>
+		<a class='filter-button' href="#" data-filter-category='REG_OR_POST' data-filter-value="Reg">Regular Season</a>
+		<a class='filter-button' href="#" data-filter-category='REG_OR_POST' data-filter-value="Post">Postseason</a>
 	</div>
 	<div class='filters__section filters__section--opponent'>
 		<h3 class='filters__label'>Opponents</h3>
 		{% for opponent in opponents|sort(attribute="team") %}
-			<a class='button' href="#" data-filter-category='OPP' data-filter-value="{{opponent.team}}">{{ opponent.team }}</a> 
+			<a class='filter-button' href="#" data-filter-category='OPP' data-filter-value="{{opponent.team}}">{{ opponent.team }}</a> 
 		{% endfor %}
 	</div>
 	<div class='filters__section filters__section--receiver'>
 		<h3 class='filters__label'>Receivers</h3>
 		{% for receiver in receivers|sort(attribute="name_last") %}
-			<a class='button' href="#" data-filter-category='RECEIVER_ID' data-filter-value="{{receiver.id}}">{{ receiver.name_first }} {{ receiver.name_last }}</a> 
+			<a class='filter-button' href="#" data-filter-category='RECEIVER_ID' data-filter-value="{{receiver.id}}">{{ receiver.name_first }} {{ receiver.name_last }}</a> 
 		{% endfor %}
 	</div>
 </div>

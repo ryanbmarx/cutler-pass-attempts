@@ -8,7 +8,7 @@ HTMLCollection.prototype[Symbol.iterator] = Array.prototype[Symbol.iterator];
 
 function collectChoices(){
     // Cycle through the buttons, see which ones are checked.
-    const buttons = document.querySelectorAll('.button--checked');
+    const buttons = document.querySelectorAll('.filter-button--checked');
 
     // This array will house the user-made choices
     let choices = [];
@@ -172,24 +172,24 @@ function drawChart(){
 
 
 window.onload = function(){
-    let buttons = document.getElementsByClassName('button')
-    for (var button of buttons){
-        button.addEventListener('click', e => {
+    let filterButtons = document.getElementsByClassName('filter-button')
+    for (var filterButton of filterButtons){
+        filterButton.addEventListener('click', e => {
             e.preventDefault();
-            let button = e.target;
-            let classlist = button.classList;
+            let filterButton = e.target;
+            let classlist = filterButton.classList;
 
             // Toggle the checked class on the actual button
-            if(classlist.contains('button--checked')){
-                button.classList.remove('button--checked');
+            if(classlist.contains('filter-button--checked')){
+                filterButton.classList.remove('filter-button--checked');
             } else {
-                button.classList.add('button--checked');
+                filterButton.classList.add('filter-button--checked');
             }
 
             // If this is the only checked filter option, then activate/un-mute the submit button(s).
             // If there are no checked filter options, then re-mute the submit button.
             let submitButtons = document.getElementsByClassName('control-button__submit');
-            if (document.getElementsByClassName('button--checked').length > 0){
+            if (document.getElementsByClassName('filter-button--checked').length > 0){
                 for (var submit of submitButtons){
                     submit.classList.remove('muted');
                     submit.classList.add('active');
@@ -221,7 +221,8 @@ window.onload = function(){
         })  
     }
         
-     
+    // The selectAll button
+    document.getElementsByClassName('filter-button--selectAll')
 	d3.csv(`//${window.ROOT_URL}/data/pass-attempts.csv`, data => {
         // Start by taking the main data file, slicing off the header_descriotons row.
         window.base_data = data.splice(1, data.length - 1);

@@ -10,7 +10,7 @@
 	}
 }
 
-.trb_mainContent .button{
+.trb_mainContent .filter-button{
 	@include agate();
 	display: block;
 	z-index:1000;
@@ -31,7 +31,7 @@
 
 	}
 
-	&.button--checked{
+	&.filter-button--checked{
 		background-color:rgba($bears-blue, 1);
 		border-color:rgba($bears-blue, 1);
 		color:white;
@@ -41,13 +41,13 @@
 }
 
 .filters__section--opponent{
-	.button{
+	.filter-button{
 		width: 19%;
 	}
 }
 
 .filters__section--receiver{
-	.button{
+	.filter-button{
 		width: 24%;
 	}
 }
