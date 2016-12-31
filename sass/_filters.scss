@@ -1,0 +1,41 @@
+.filters__section{
+	display:flex;
+	justify-content:space-between;
+	flex-wrap:wrap;
+	margin:25px 0;
+
+	.filters__label{
+		@include label5();
+		width:100%;
+	}
+}
+
+.trb_mainContent .button{
+	@include agate();
+	display: block;
+	z-index:1000;
+	padding: 15px 0;
+	margin: 0 0 10px 0;
+	width: 31%;
+	border:1px solid $trib-gray3;
+	background-color:transparent;
+	text-align:center;
+	color:black;
+	transition: all 150ms;
+
+	&:hover{
+		border-color:rgba($bears-blue, .1);
+		background-color:rgba($bears-blue, .3);
+		transition: all 150ms;
+		color:black;
+
+	}
+
+	&.button--checked{
+		background-color:rgba($bears-blue, 1);
+		border-color:rgba($bears-blue, 1);
+		color:white;
+		font-weight: bold;
+		transition: all 150ms;
+	}
+}
