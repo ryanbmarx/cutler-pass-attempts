@@ -1,57 +1,57 @@
-{% set rows = ["LS", "L", 'M', 'R', 'RS'] %}
-{% set columns = ["incomplete", "negativeToZero", "1-4", "5-9", "10-14", "15-19", "20-39", "40-59", "60-plus"] %}
-
 {% macro addFieldColumns(row, label) %}
-
-{% for column in columns %}
-{% if loop.first %}
-<div class='passes__column passes__column--label'>
-	<div class='passes__inner'>
-		<p>{{ label }}</p>
-	</div>
-</div>
-{% endif %}
-<div class='passes__column passes__column--{{ column }}'>
-	<div class='passes__inner'>
-		<span data-row="{{ row }}" data-column="{{ column }}" class='passes__circle'>
-			<small class='passes__count'></small>
-		</span>
-	</div>
-</div>
-{% endfor %}
-
+	{% for column in viz_labels|sort(attribute='order') %}
+		{% if loop.first %}
+			<div class='passes__column passes__column--label'>
+				<div class='passes__inner'>
+					<p>{{ label }}</p>
+				</div>
+			</div>
+		{% endif %}
+		<div class='passes__column passes__column--{{ column.column }}'>
+			<div class='passes__inner'>
+				<span data-row="{{ row }}" data-column="{{ column.column }}" class='passes__circle'>
+					<small class='passes__count hidden'></small>
+				</span>
+			</div>
+		</div>
+	{% endfor %}
 {% endmacro %}
 
 
 {% block content %}
 
 {# {% include '_cutler-loader.html' %} #}
+<div style='display:none;'>
+	{% include 'img/nfl-logos.svg' %}
+</div>
 
 <div class='control-buttons'>
-	<a id='filter' class='control-buttons__filter'>SHOW FILTERS</a>
-	<a id='submit' class='control-buttons__submit muted'>SUBMIT</a>
-
+	<a id='filter' class='control-button control-button--filter'>SHOW FILTERS</a>
+	<a id='filter' class='control-button control-button--labels'>TOGGLE LABELS</a>
+	<a class='control-button control-button--submit muted'>FILTER DATA</a>
 </div>
 
 {% include '_bar-chart.html' %}
 <div class='passes'>
 	<div class='passes__row passes__row--labels'>
+		{# TOP ROW LABELS #}
 		{% for label in viz_labels|sort(attribute='order') %}
 			{% if loop.first %}
 				<div class="passes__column"><div class='passes__inner'></div></div>
 			{% endif %}
-				{# {% set columns[loop.index]=label.label %} #}
 			<div class="passes__column"><div class='passes__inner'>{{ label.label }}</div></div>
 		{% endfor %}
 	</div>
 	{% for row in rows %}
-	<div class='passes__row passes__row--{{ row }}'>
-		{{ addFieldColumns(row, row) }}
+	<div class='passes__row passes__row--{{ row.row }}'>
+		{# This macro drops the column/boxes into each row #}
+		{{ addFieldColumns(row.row, row.label) }}
 	</div>
 	{% endfor %}
 </div>
 
-{# {% include '_filters.html' %} #}
+{% include '_filters.html' %}
+
 {% endblock content %}
 
 {% block library_scripts %}

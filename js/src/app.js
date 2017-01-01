@@ -37,6 +37,8 @@ function collectChoices(){
         })
         flatChoices[key] = values;
     })
+    console.log('=======================');
+    console.log('new choices', flatChoices);
     return flatChoices;
 }
 
@@ -99,6 +101,7 @@ function aggregateData(data){
 
 function initChart(){
     // Creates the scale which will be used to scale all the circles.
+    const maxCircleDiameter = 200;
     let passMax = 0, 
     rowKeys = Object.keys(window.aggregated_data),
     colKeys = Object.keys(window.aggregated_data['negativeToZero']);
@@ -113,7 +116,7 @@ function initChart(){
     
     window.rScale = d3.scaleLinear()
         .domain([0, passMax])
-        .range([0, 240]);
+        .range([0, maxCircleDiameter]);
 
     // Update the total in the bar chart
     d3.select('.chart__total')
@@ -122,7 +125,7 @@ function initChart(){
 
 function visualizeData(data){
     console.log('Redrawing chart');
-    console.log(data);
+    console.log('New data', data);
     var passes = document.querySelectorAll('.passes__circle');
     passes.forEach(function(pass) {
         let column = pass.dataset.column;
@@ -158,7 +161,23 @@ function visualizeData(data){
         .transition()
         .duration(1000)
         .style('width', `${total_width * barWidthAsPercentage}px`)
-        .select('small')
+
+
+        d3.select('.chart__bar-label').remove();
+        if(total_width * barWidthAsPercentage > 150){
+            
+            d3.select('.chart__bar')
+                .append('small')
+                .classed('chart__bar-label', true);
+
+        } else {
+            
+            d3.select('.chart__bar-wrapper')
+                .append('small')
+                .classed('chart__bar-label', true);
+        }
+
+    d3.select('.chart__bar-label')
         .text(`${ d3.format('.1%')(barWidthAsPercentage) }`);
 
     d3.select('.chart__now-showing')
@@ -188,7 +207,7 @@ window.onload = function(){
 
             // If this is the only checked filter option, then activate/un-mute the submit button(s).
             // If there are no checked filter options, then re-mute the submit button.
-            let submitButtons = document.getElementsByClassName('control-button__submit');
+            let submitButtons = document.getElementsByClassName('control-button--submit');
             if (document.getElementsByClassName('filter-button--checked').length > 0){
                 for (var submit of submitButtons){
                     submit.classList.remove('muted');
@@ -207,7 +226,7 @@ window.onload = function(){
     // but that class is removed when the first filter option is selected. The class "active" is added, and
     // is required by the function for the event listener.
 
-    let submitButtons = document.getElementsByClassName('control-button__submit');
+    let submitButtons = document.getElementsByClassName('control-button--submit');
 
     for (var submit of submitButtons){
         submit.addEventListener('click', function(e) {
@@ -222,7 +241,29 @@ window.onload = function(){
     }
         
     // The selectAll button
-    document.getElementsByClassName('filter-button--selectAll')
+    document.getElementsByClassName('filter-button--selectAll')[0]
+        .addEventListener('click', e => {
+            d3.selectAll('.filter-button').classed('filter-button--checked', true);
+        });
+
+    // The unSelectAll button
+    document.getElementsByClassName('filter-button--selectNone')[0]
+        .addEventListener('click', e => {
+            d3.selectAll('.filter-button').classed('filter-button--checked', false);
+        });
+
+
+    console.log(document.getElementsByClassName('control-button--labels'));
+    // The toggle labels button
+    document.getElementsByClassName('control-button--labels')[0]
+        .addEventListener('click', e => {
+            document.querySelectorAll('.passes__count').forEach(function(label){
+                label.classList.toggle('hidden');
+            });
+        });
+
+
+    // Loading the data
 	d3.csv(`//${window.ROOT_URL}/data/pass-attempts.csv`, data => {
         // Start by taking the main data file, slicing off the header_descriotons row.
         window.base_data = data.splice(1, data.length - 1);
