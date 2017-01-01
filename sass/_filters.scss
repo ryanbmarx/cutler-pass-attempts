@@ -42,7 +42,16 @@
 
 .filters__section--opponent{
 	.filter-button{
+		overflow: hidden;
+		display: flex;
+		justify-content: flex-start;
+		align-items:center;
+		text-align:center;
 		width: 19%;
+
+		svg{
+			// Styles are set inline so there is no splash of giant logos
+		}
 	}
 }
 
