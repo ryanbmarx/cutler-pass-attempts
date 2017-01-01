@@ -2,7 +2,7 @@
 @import 'base-variables';
 // $column_dimension:80px;
 $column_width:10%;
-$column_height:40px;
+$column_height:60px;
 // $chart_width:($column_dimension * 6) + 30px;
 $circle_dimension:1px;
 
@@ -61,68 +61,55 @@ $circle_dimension:1px;
 .passes__row{
 	@include clearfix();
 
+	&:first-child{
+		background-color:white;
 
+		.passes__column .passes__inner{
+			@include agate();
+			text-align: center;
+			// font-weight: bold;
+			border-right:none;
+		}
+	}
 }
 
-.passes__column{
+.trb_mainContent .passes__row--labels{
+	background-color:white;
+	.passes__column{
+	    height: auto;
+	    padding: 0 0 10px 0;
+	}
+}
+
+.passes__column--label{
+	background-color:white;
+	.passes__inner {
+		border-bottom:none;
+	}
+}
+
+.trb_mainContent .passes__column{
 	height:$column_height;
 	width:$column_width;
 	float:left;
 	position:relative;
+	
 	.passes__inner{
-		border:1px solid black;
 		width:100%;
 		height:100%;
 		display:flex;
 		align-items:center;
 		justify-content: center;
-// 		border-right:1px dashed black;
-// 		border-bottom:1px dashed black;
+		border-right:1px solid white;
+		border-bottom:1px solid white;
+	
+		p {
+		@include agate();
+		font-weight: bold;
+	}
+		}
 }
-}
 
-
-
-// .passes__row--negativeToZero{
-// 	border-top:4px solid black;
-// }
-
-
-// .trb_mainContent .passes__column--label {
-// 	width:100px;
-// 	.passes__inner{
-// 		border-top:none;
-// 		border-bottom:none;
-
-// 		p{
-// 			@include sans-serif();
-// 			font-weight: bold;
-// 			max-width: 70px;
-// 			margin:0;
-// 			padding:0;
-// 		}
-// 	}
-// }
-
-
-// .trb_mainContent .passes__row--top-labels {
-// 	.passes__column{
-// 		height:auto;
-// 		padding: 10px 0;
-// 		border-bottom:1px dashed black;	
-// 		&:first-child{
-// 			border-bottom:none;	
-// 		}
-
-// 	}
-// 	p{
-// 		@include sans-serif();
-// 		font-weight: bold;
-// 		margin:0;
-// 		padding:0;
-// 		text-align:center;
-// 	}
-// }
 .passes__circle{
 	display:flex;
 	justify-content:center;
@@ -135,11 +122,16 @@ $circle_dimension:1px;
 	height:$circle_dimension;
 	width:$circle_dimension;
 	margin: #{0 - ($circle_dimension / 2)} 0 0 #{0 - ($circle_dimension / 2)};
+    z-index: 1000;
 	transition: all 400ms;
 
 	.passes__count{
 		@include agate();
 		font-weight:bold;
+
+		&.hidden{
+			display: none;
+		}
 	}
 }
 
@@ -157,6 +149,9 @@ $circle_dimension:1px;
 	}
 
 	&__bar-wrapper{
+			display:flex;
+	justify-content:flex-start;
+	align-items:center;
 		width:100%;
 		background-color: rgba($bears_orange, .4); 
 	}
@@ -167,14 +162,14 @@ $circle_dimension:1px;
 		display:flex;
 		justify-content: flex-end;
 		align-items:center;
+	}
 
-		small{
+	&__bar-label{
 			@include sans-serif();
 			font-weight: bold;
-			padding-right: 5px;
+			padding:0  5px;
 			color:white;
 		}
-	}
 }
 
 

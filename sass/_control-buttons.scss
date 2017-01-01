@@ -16,7 +16,7 @@
 	
 	border:1px solid $trib-gray3;
 	
-	width:48%;
+	width:32%;
 	opacity:.8;
 
 	transition: all 150ms;
@@ -29,10 +29,10 @@
 		color:white;
 	}
 	
-	&__filter{
+	&--filter, &--labels{
 		background-color:$bears-blue;
 	}
-	&__submit{
+	&--submit{
 		background-color:$bears-orange;
 	}
 
