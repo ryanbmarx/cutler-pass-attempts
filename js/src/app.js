@@ -37,8 +37,12 @@ function collectChoices(){
         })
         flatChoices[key] = values;
     })
+
+    window.yardsToGo = [document.getElementById('ytg_min').value, document.getElementById('ytg_max').value];
     console.log('=======================');
     console.log('new choices', flatChoices);
+    console.log('new yards to go', window.yardsToGo);
+
     return flatChoices;
 }
 
@@ -57,7 +61,24 @@ function filterData(){
                 return false;
             })
         });
+
+        // if either of the the default YTG values has been changes then filter the data based on those user selections
+        if(window.yardsToGo[1] < 100 || window.yardsToGo[0] > 1){
+            console.log('ytg defaults have been changed.')
+            filteredData = _.filter(filteredData, pass => {
+                console.log(pass, ytg, ytg <= window.yardsToGo[1], ytg >= window.yardsToGo[0]);
+                let ytg = parseInt(pass.YTG);
+                if (ytg <= window.yardsToGo[1] && ytg >= window.yardsToGo[0]){
+                    return true;
+                }
+                return false;
+            })
+        }
+
+        // Number of pass attempts in filtered set
         window.filteredTotal = filteredData.length;
+        
+        // Number of individual games in the filtered set.
         window.totalFilteredGames = _.uniq(filteredData, false, pass =>{
             return pass.GDATE;
         }).length;
