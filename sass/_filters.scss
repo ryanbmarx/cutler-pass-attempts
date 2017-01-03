@@ -31,7 +31,7 @@
 
 	}
 
-	&.filter-button--checked{
+	&[data-checked='true'], &[data-checked=true]{
 		background-color:rgba($bears-blue, 1);
 		border-color:rgba($bears-blue, 1);
 		color:white;
@@ -46,11 +46,12 @@
 		display: flex;
 		justify-content: flex-start;
 		align-items:center;
-		text-align:center;
+		text-align:left;
 		width: 19%;
+		padding:0;
 
 		svg{
-			// Styles are set inline so there is no splash of giant logos
+			// Styles are set inline so there is no splash of giant logos before CSS loads via JS.
 		}
 	}
 }
@@ -58,5 +59,27 @@
 .filters__section--receiver{
 	.filter-button{
 		width: 24%;
+		overflow: hidden;
+		display: flex;
+		justify-content: flex-start;
+		align-items:center;
+		text-align:left;
+
+		img{
+			// Most of these styles are inline to prevent massive mugshots before CSS loads via JS.
+			border-radius:50%;
+			border:3px solid $trib-gray4;
+		}
+	}
+}
+
+.filters__section--utility{
+	// position: fixed;
+	// top:0;
+	// left:0;
+	// width:100%;
+	// -webkit-transform: translateZ(0);
+	.filter-button{
+		width:49%;
 	}
 }

@@ -8,7 +8,7 @@ HTMLCollection.prototype[Symbol.iterator] = Array.prototype[Symbol.iterator];
 
 function collectChoices(){
     // Cycle through the buttons, see which ones are checked.
-    const buttons = document.querySelectorAll('.filter-button--checked');
+    const buttons = document.querySelectorAll("[data-checked='true'][data-filter-category][data-filter-value]");
 
     // This array will house the user-made choices
     let choices = [];
@@ -58,6 +58,11 @@ function filterData(){
             })
         });
         window.filteredTotal = filteredData.length;
+        window.totalFilteredGames = _.uniq(filteredData, false, pass =>{
+            return pass.GDATE;
+        }).length;
+
+        console.log('Total games in filtered data: ', window.totalFilteredGames);
         return aggregateData(filteredData);    
 }
 
@@ -182,6 +187,9 @@ function visualizeData(data){
 
     d3.select('.chart__now-showing')
         .text(d3.format(',')(window.filteredTotal));
+    
+    d3.select('.chart__total-games')
+        .text(d3.format(',')(window.totalFilteredGames));
 
 }
 
@@ -190,7 +198,69 @@ function drawChart(){
 }
 
 
+function groupClick(e, attribute, value){
+    /*
+        e = event object
+        attribute = the data-* attribute to look for
+        value = the value of the attribute desired
+    */
+
+    const checked = e.target.dataset.checked,
+        filterButtons = document.querySelectorAll(`.filter-button[data-${attribute}]`),
+        splitRegex = "/[,\/ ]/g";
+    if (checked == false || checked == "false"){
+        // If the group selection button is not itself checked, then we want to select the corresponding group.
+
+        // Set the group selection button to checked
+        e.target.dataset.checked = true;
+        for (var filterButton of filterButtons){
+            let dataAttributeValues=filterButton.dataset[attribute].split(/[,\/ ]/g);
+            console.log("CHECKING", attribute, value, value == filterButton.dataset[attribute], dataAttributeValues);
+            if (dataAttributeValues.indexOf(value) > -1){
+                // filterButton.classList.add('filter-button--checked');
+                filterButton.dataset.checked = 'true';
+            }
+        }
+    } else {
+        // If the group selection button already is checked, then we want to remove the corresponding group for the choices selection.
+
+        // Set the group selection button to unchecked
+        e.target.dataset.checked = false;
+        for (var filterButton of filterButtons){
+            let dataAttributeValues=filterButton.dataset[attribute].split(/[,\/ ]/g);
+            console.log("unchecking", attribute, value, value == filterButton.dataset[attribute], dataAttributeValues);
+            if (dataAttributeValues.indexOf(value) > -1){
+                // filterButton.classList.remove('filter-button--checked');
+                filterButton.dataset.checked = false;
+            }
+        }
+    }
+}
+
+
 window.onload = function(){
+
+    // Position buttons, making them select all relevant players
+    for (var button of document.getElementsByClassName('filter-button--position')){
+        button.addEventListener('click', function(e) {
+            groupClick(e, "position", e.target.dataset.position);
+        });
+    }
+
+    // Conference buttons, making them select all relevant teams
+    for (var button of document.getElementsByClassName('filter-button--conference')){
+        button.addEventListener('click', function(e) {
+            groupClick(e, "conference", e.target.dataset.conference);
+        });
+    }
+
+    // Division buttons, making them select all relevant teams
+    for (var button of document.getElementsByClassName('filter-button--division')){
+        button.addEventListener('click', function(e) {
+            groupClick(e, "division", e.target.dataset.division);
+        });
+    }
+
     let filterButtons = document.getElementsByClassName('filter-button')
     for (var filterButton of filterButtons){
         filterButton.addEventListener('click', e => {
@@ -201,14 +271,16 @@ window.onload = function(){
             // Toggle the checked class on the actual button
             if(classlist.contains('filter-button--checked')){
                 filterButton.classList.remove('filter-button--checked');
+                filterButton.dataset.checked = false;
             } else {
                 filterButton.classList.add('filter-button--checked');
+                filterButton.dataset.checked = true;
             }
 
             // If this is the only checked filter option, then activate/un-mute the submit button(s).
             // If there are no checked filter options, then re-mute the submit button.
             let submitButtons = document.getElementsByClassName('control-button--submit');
-            if (document.getElementsByClassName('filter-button--checked').length > 0){
+            if (document.querySelectorAll('.filter-button--checked').length > 0){
                 for (var submit of submitButtons){
                     submit.classList.remove('muted');
                     submit.classList.add('active');
@@ -243,17 +315,16 @@ window.onload = function(){
     // The selectAll button
     document.getElementsByClassName('filter-button--selectAll')[0]
         .addEventListener('click', e => {
-            d3.selectAll('.filter-button').classed('filter-button--checked', true);
+            d3.selectAll('.filter-button').attr('data-filter', 'true');
         });
 
     // The unSelectAll button
     document.getElementsByClassName('filter-button--selectNone')[0]
         .addEventListener('click', e => {
-            d3.selectAll('.filter-button').classed('filter-button--checked', false);
+            d3.selectAll('.filter-button').attr('data-checked', "false");
         });
 
 
-    console.log(document.getElementsByClassName('control-button--labels'));
     // The toggle labels button
     document.getElementsByClassName('control-button--labels')[0]
         .addEventListener('click', e => {
@@ -261,6 +332,7 @@ window.onload = function(){
                 label.classList.toggle('hidden');
             });
         });
+
 
 
     // Loading the data
