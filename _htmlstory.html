@@ -17,9 +17,8 @@
 	{% endfor %}
 {% endmacro %}
 
-
 {% block content %}
-
+{{ intro|markdown}}
 {# {% include '_cutler-loader.html' %} #}
 <div style='display:none;'>
 	{% include 'img/nfl-logos.svg' %}
