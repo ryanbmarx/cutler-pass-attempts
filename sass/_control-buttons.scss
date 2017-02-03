@@ -1,7 +1,7 @@
 .control-buttons{
 	display:flex;
 	justify-content:space-between;
-	margin: 0 0 10px 0;
+	margin: 15px 0;
 }
 
 .trb_mainContent .control-button {
@@ -15,6 +15,7 @@
 	margin: 0 0 10px 0;
 	
 	border:1px solid $trib-gray3;
+	background-color:$bears-blue;
 	
 	width:32%;
 	opacity:.8;
@@ -29,9 +30,6 @@
 		color:white;
 	}
 	
-	&--filter, &--labels{
-		background-color:$bears-blue;
-	}
 	&--submit{
 		background-color:$bears-orange;
 	}
