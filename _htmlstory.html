@@ -21,13 +21,7 @@
 {{ intro|markdown}}
 {# {% include '_cutler-loader.html' %} #}
 <div style='display:none;'>
-	{% include 'img/nfl-logos.svg' %}
-</div>
-
-<div class='control-buttons'>
-	<a id='filter' class='control-button control-button--filter'>SHOW FILTERS</a>
-	<a id='filter' class='control-button control-button--labels'>TOGGLE LABELS</a>
-	<a class='control-button control-button--submit muted'>FILTER DATA</a>
+	{% include 'img/sprite.svg/defs/svg/sprite.css.svg' %}
 </div>
 
 {% include '_bar-chart.html' %}
@@ -48,8 +42,12 @@
 	</div>
 	{% endfor %}
 </div>
-
+{% include '_control-buttons.html' %}
 {% include '_filters.html' %}
+<div class='credits'>
+	{{ sources|markdown }}
+	{{ credits|markdown }}
+</div>
 
 {% endblock content %}
 

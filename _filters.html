@@ -1,100 +1,153 @@
 <section id='filters'>
 	<h2>Filter by ...</h2>
 	<div class='passes__filters filters'>
-		<div class='filters__section filters__section--utility'>
-			<a class='filter-button filter-button--selectAll' href="#" >SELECT ALL</a>
-			<a class='filter-button filter-button--selectNone' href="#" >CLEAR SELECTION</a>
-		</div>
+		<h3 class='filters__label'>Pass Result</h3>
 		<div class='filters__section filters__section--pass-result'>
-			<h3 class='filters__label'>Pass Result</h3>
-			<p><em>TK: Yards in air, YAC</em></p>
-			<a class='filter-button' href="#" data-filter-category='INT' data-filter-value=1>INT</a>
+			<div class='filters__column'>
+				<a class='filter-button' href="#" data-filter-category='INT' data-filter-value=1>INT</a>
 			<a class='filter-button' href="#" data-filter-category='INT' data-filter-value=0>NO INT</a>
-			<a class='filter-button' href="#" data-filter-category='COMPLETION' data-filter-value=1>COMPLETE</a>
+						<a class='filter-button' href="#" data-filter-category='FIRST_DOWN' data-filter-value=1>FOR 1ST DOWN</a>
+
+			</div>
+			<div class='filters__column'>
+				<a class='filter-button' href="#" data-filter-category='COMPLETION' data-filter-value=1>COMPLETE</a>
 			<a class='filter-button' href="#" data-filter-category='COMPLETION' data-filter-value=0>INCOMPLETE</a>
 			<a class='filter-button' href="#" data-filter-category='TD' data-filter-value=1>TD</a>
 			<a class='filter-button' href="#" data-filter-category='TD' data-filter-value=0>NOT A TD</a>
-			<a class='filter-button' href="#" data-filter-category='FIRST_DOWN' data-filter-value=1>1st down</a>
-
-		</div>
-
-		<div class='filters__section filters__section--game-situation'>
-			<h3 class='filters__label'>Game situation</h3>
-			<p><em>TK: Yards to go</em></p>
-			<a class='filter-button' href="#" data-filter-category='QB_POSITION' data-filter-value="Shotgun">Shotgun</a>
-			<a class='filter-button' href="#" data-filter-category='QB_POSITION' data-filter-value="Pistol">Pistol</a>
-			<a class='filter-button' href="#" data-filter-category='QB_POSITION' data-filter-value="Under Center">Under center</a>		
-
-			<a class='filter-button' href="#" data-filter-category='DOWN' data-filter-value=1>1st down</a>		
-			<a class='filter-button' href="#" data-filter-category='DOWN' data-filter-value=2>2nd down</a>		
-			<a class='filter-button' href="#" data-filter-category='DOWN' data-filter-value=3>3rd down</a>		
-			<a class='filter-button' href="#" data-filter-category='DOWN' data-filter-value=4>4th down</a>		
-
-			<form id='yards-to-go'>
-				Yards to go:<br />
-				Min: <input type="text" name="ytg_min" id="ytg_min" value=1><br>
-				Max: <input type="text" name="ytg_max" id="ytg_max" value=100><br>
+			</div>
+			<div class='filters__column'>
+				
+			<form id='yards-in-air' class='yards-form'>
+				<label class='main-label'>Yards in the air</label>
+				<div class='field-wrapper'>
+					<label for="yia_min">Min: </label>
+					<input type="text" name="yia_min" id="yia_min" class='min' value=-25>
+				</div>
+				<div class='field-wrapper'>
+					<label for="yia_max">Min: </label>
+					<input type="text" name="yia_max" id="yia_max"  class='max' value=100>
+				</div>
 			</form>
 
-			<a class='filter-button' href="#" data-filter-category='QTR' data-filter-value=1>1st quarter</a>		
-			<a class='filter-button' href="#" data-filter-category='QTR' data-filter-value=2>2nd quarter</a>		
-			<a class='filter-button' href="#" data-filter-category='QTR' data-filter-value=3>3rd quarter</a>		
-			<a class='filter-button' href="#" data-filter-category='QTR' data-filter-value=4>4th quarter</a>		
-			<a class='filter-button' href="#" data-filter-category='QTR' data-filter-value=5>Overtime</a>
+			<form id='yards-after-catch' class='yards-form'>
+				<label class='main-label'>Yards after catch</label>
+				<div class='field-wrapper'>
+					<label for="yac_min">Min: </label>
+					<input type="text" name="yac_min" id="yac_min" class='min'  value=-25>
+				</div>
+				<div class='field-wrapper'>
+					<label for='yac_max'>Max: </label>
+					<input type="text" name="yac_max" id="yac_max"  class='max' value=100>
+				</div>
+			</form>
 
+			</div>
 		</div>
+		<h3 class='filters__label'>Game situation</h3>
+		<div class='filters__section filters__section--game-situation'>
+			<div class='filters__column'>
+				<p class='filters__column-label'>Down & Distance</p>
+				<a class='filter-button' href="#" data-filter-category='DOWN' data-filter-value=1>1st down</a>	
+				<a class='filter-button' href="#" data-filter-category='DOWN' data-filter-value=2>2nd down</a>	
+				<a class='filter-button' href="#" data-filter-category='DOWN' data-filter-value=3>3rd down</a>	
+				<a class='filter-button' href="#" data-filter-category='DOWN' data-filter-value=4>4th down</a>
+				<form id='yards-to-go' class='yards-form'>
+					<label class='main-label'>Yards to go</label>
+					<div class='field-wrapper'>
+						<label for='ytg_min'>Min:</label>
+						<input type="text" name="ytg_min" id="ytg_min"  class='min' value=1>
+					</div>
+					<div class='field-wrapper'>
+						<label for='ytg_max'>Max:</label>
+						<input type="text" name="ytg_max" id="ytg_max"  class='max' value=100>
+					</div>
+				</form>
+			</div>
+			<div class='filters__column'>
+				<p class='filters__column-label'>QB Formation</p>	
+				<a class='filter-button' href="#" data-filter-category='QB_POSITION' data-filter-value="Shotgun">Shotgun</a>
+				<a class='filter-button' href="#" data-filter-category='QB_POSITION' data-filter-value="Pistol">Pistol</a>
+				<a class='filter-button' href="#" data-filter-category='QB_POSITION' data-filter-value="Under Center">Under center</a>		
+			</div>
+			<div class='filters__column'>
+				<p class='filters__column-label'>Quarter</p>
+				<a class='filter-button' href="#" data-filter-category='QTR' data-filter-value=1>1st quarter</a>
+				<a class='filter-button' href="#" data-filter-category='QTR' data-filter-value=2>2nd quarter</a>
+				<a class='filter-button' href="#" data-filter-category='QTR' data-filter-value=3>3rd quarter</a>
+				<a class='filter-button' href="#" data-filter-category='QTR' data-filter-value=4>4th quarter</a>
+				<a class='filter-button' href="#" data-filter-category='QTR' data-filter-value=5>Overtime</a>
+			</div>			
+		</div>
+		<h3 class='filters__label'>Schedule (TK: Year, season week)</h3>
 		<div class='filters__section filters__section--schedule'>
-			<h3 class='filters__label'>Schedule</h3>
-			<p><em>TK: Year, season week</em></p>
-			<a class='filter-button' href="#" data-filter-category='WEEKDAY' data-filter-value=5>Thursday</a>
-			<a class='filter-button' href="#" data-filter-category='WEEKDAY' data-filter-value=7>Saturday</a>
-			<a class='filter-button' href="#" data-filter-category='WEEKDAY' data-filter-value=1>Sunday</a>
-			<a class='filter-button' href="#" data-filter-category='WEEKDAY' data-filter-value=2>Monday</a>
-			<a class='filter-button' href="#" data-filter-category='TIME_BUCKET' data-filter-value="Early">Early</a>
-			<a class='filter-button' href="#" data-filter-category='TIME_BUCKET' data-filter-value="Late">Late</a>
-			<a class='filter-button' href="#" data-filter-category='TIME_BUCKET' data-filter-value="Primetime">Primetime</a>
-			<a class='filter-button' href="#" data-filter-category='HOME_GAME' data-filter-value=1>At home</a>
-			<a class='filter-button' href="#" data-filter-category='HOME_GAME' data-filter-value=0>On road</a>
-			<a class='filter-button' href="#" data-filter-category='REG_OR_POST' data-filter-value="Reg">Regular Season</a>
-			<a class='filter-button' href="#" data-filter-category='REG_OR_POST' data-filter-value="Post">Postseason</a>
-		</div>
-		<div class='filters__section filters__section--opponent'>
-			<h3 class='filters__label'>Opponents</h3>
-			{# <a class='filter-button filter-button--conference' data-checked='false' data-conference="NFC">NFC</a>  #}
-			<a class='filter-button filter-button--division' data-checked='false'  data-division="NFC-North">NFC North</a> 
-			<a class='filter-button filter-button--division' data-checked='false'  data-division="NFC-South">NFC South</a> 
-			<a class='filter-button filter-button--division' data-checked='false'  data-division="NFC-East">NFC East</a> 
-			<a class='filter-button filter-button--division' data-checked='false'  data-division="NFC-West">NFC West</a> 
-			{# <a class='filter-button filter-button--conference' data-checked='false' data-conference="AFC">AFC</a>  #}
-			<a class='filter-button filter-button--division' data-checked='false' data-division="AFC-North">AFC North</a> 
-			<a class='filter-button filter-button--division' data-checked='false'  data-division="AFC-South">AFC South</a> 
-			<a class='filter-button filter-button--division' data-checked='false'  data-division="AFC-East">AFC East</a> 
-			<a class='filter-button filter-button--division' data-checked='false'  data-division="AFC-West">AFC West</a> 
+			<div class='filters__column'>
+				<p class='filters__column-label'>Game Day</p>
+				<a class='filter-button' href="#" data-filter-category='WEEKDAY' data-filter-value=5>Thursday</a>
+				<a class='filter-button' href="#" data-filter-category='WEEKDAY' data-filter-value=7>Saturday</a>
+				<a class='filter-button' href="#" data-filter-category='WEEKDAY' data-filter-value=1>Sunday</a>
+				<a class='filter-button' href="#" data-filter-category='WEEKDAY' data-filter-value=2>Monday</a>
 
+			</div>
+			<div class='filters__column'>
+				<p class='filters__column-label'>Location</p>
+				<a class='filter-button' href="#" data-filter-category='HOME_GAME' data-filter-value=1>At home</a>
+				<a class='filter-button' href="#" data-filter-category='HOME_GAME' data-filter-value=0>On road</a>
+				<p class='filters__column-label'>Playoffs</p>
+				<a class='filter-button' href="#" data-filter-category='REG_OR_POST' data-filter-value="Reg">Regular Season</a>
+				<a class='filter-button' href="#" data-filter-category='REG_OR_POST' data-filter-value="Post">Postseason</a>
+			</div>
+			<div class='filters__column'>
+				<p class='filters__column-label'>Kickoff time</p>
+				<a class='filter-button' href="#" data-filter-category='TIME_BUCKET' data-filter-value="Early">Early</a>
+				<a class='filter-button' href="#" data-filter-category='TIME_BUCKET' data-filter-value="Late">Late</a>
+				<a class='filter-button' href="#" data-filter-category='TIME_BUCKET' data-filter-value="Primetime">Primetime</a>
+			</div>
+		</div>
+		<h3 class='filters__label'>By division</h3>
+		<div class='filters__section filters__section--divisions'>
+			{% for conference in ["NFC", "AFC"] %}
+				{% for division in ["North", "South", "East", "West"]%}
+					<a class='filter-button filter-button--division' data-checked='false'  data-division="{{ conference }}-{{ division }}">
+						<svg viewBox="0 0 250 250" class="nfl-logo" style='height: 55px;width: 55px;margin: 0 15px 0 -11px;'> 
+							<use xlink:href="#{{ conference }}"></use>
+						</svg>
+						{{ conference }} {{ division }}
+					</a>
+				{% endfor %}
+			{% endfor %}
+		</div>
+		<h3 class='filters__label'>
+			<a class='toggle-link' data-target="teams">By team</a>
+		</h3>
+		<div class='filters__section filters__section--hidden filters__section--teams'>
 			{% for opponent in opponents|sort(attribute="team") %}
 			<a class='filter-button' href="#" data-filter-category='OPP' data-filter-value="{{opponent.team}}" data-conference="{{ opponent.conference }}" data-division="{{ opponent.division }}">
 				<svg viewBox="0 0 250 250" class="nfl-logo" style='height: 55px;width: 55px;margin: 0 15px 0 -11px;'> 
-					<use xlink:href="#{{ opponent.abrv }}"></use>
+					<use xlink:href="#{{ opponent.abrv|upper }}"></use>
 				</svg>
 				{{ opponent.team }}
 			</a> 
 			{% endfor %}
 		</div>
-		<div class='filters__section filters__section--receiver'>
-			<h3 class='filters__label'>Receivers</h3>
-			<a class='filter-button filter-button--position' data-checked=false data-position="WR">WR</a> 
-			<a class='filter-button filter-button--position' data-checked=false data-position="TE">TE</a> 
-			<a class='filter-button filter-button--position' data-checked=false data-position="FB">FB</a> 
-			<a class='filter-button filter-button--position' data-checked=false data-position="RB">RB</a> 
-			<a class='filter-button filter-button--position' data-checked=false data-position="DB">DB</a> 
-			<a class='filter-button filter-button--position' data-checked=false data-position="OL">OL</a> 
-
+		<h3 class='filters__label'>By receiver type</h3>
+		<div class='filters__section filters__section--receivers'>
+			{% for position in positions %}
+				<a class='filter-button filter-button--position' data-checked=false data-position="{{ position.abbrv }}">
+				{{ position.name }}
+			</a> 
+			{% endfor %}
+		</div>
+		<h3 class='filters__label'>
+			<a class='toggle-link' data-target="players">By player</a>
+		</h3>
+		<div class='filters__section filters__section--players filters__section--hidden'>
 			{% for receiver in receivers|sort(attribute="name_last") %}
-			<a class='filter-button filter-button--receiver' href="#" data-filter-category='RECEIVER_ID' data-position="{{ receiver.position }}" data-filter-value="{{receiver.id}}">
+			<a class='filter-button filter-button--player' href="#" data-filter-category='RECEIVER_ID' data-position="{{ receiver.position }}" data-filter-value="{{receiver.id}}">
 				<img style='height:45px;width:45px;margin:0 15px 0 7px;' src='http://{{ ROOT_URL }}/img/silhouette.png' alt="Chicago Bear {{ receiver.name_first }} {{ receiver.name_last }} ({{ receiver.position }})"/>
 				{{ receiver.name_first }} {{ receiver.name_last }} ({{ receiver.position }})
 			</a> 
 			{% endfor %}
 		</div>
 	</div>
+</div>
 </section>
