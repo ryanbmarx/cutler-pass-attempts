@@ -82,17 +82,24 @@ module.exports = function(grunt) {
     js: {
       files: ['js/src/**/*.js'],
       tasks: ['browserify:app']
+    },
+    svg: {
+      files: ['img/svgSrc/**/*.svg'],
+      tasks: ['svgstore']
     }
   };
+
 
   grunt.initConfig(config);
 
   grunt.loadNpmTasks('grunt-sass');
   grunt.loadNpmTasks('grunt-browserify');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  // grunt.loadNpmTasks('grunt-svgstore');
 
   var defaultTasks = [];
 
+  // defaultTasks.push('svgstore');
   defaultTasks.push('sass');
   defaultTasks.push('browserify');
 
