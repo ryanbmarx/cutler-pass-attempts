@@ -47,6 +47,13 @@
 	}
 }
 
+.filters__return{
+	// Back to top link in the section headers
+	@include sans-serif();
+	font-style: italic;
+	float:right
+}
+
 .trb_mainContent .filters__column-label{
 	@include sans-serif-text(16px, 1.3em, bold);
 }

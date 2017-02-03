@@ -25,7 +25,7 @@
 </div>
 
 {% include '_bar-chart.html' %}
-<div class='passes'>
+<div id='pass-chart' class='passes'>
 	<div class='passes__row passes__row--labels'>
 		{# TOP ROW LABELS #}
 		{% for label in viz_labels|sort(attribute='order') %}

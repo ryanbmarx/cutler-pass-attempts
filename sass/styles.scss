@@ -172,7 +172,9 @@ $circle_dimension:1px;
 		}
 }
 
-
+.trb_mainContent .credits p{
+	@include agate();
+}
 
 @media all and (max-width: 850px){
 

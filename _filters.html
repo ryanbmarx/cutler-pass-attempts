@@ -1,53 +1,62 @@
+{% macro section_header(label, data_target, open_closed) %}
+		<h3 class='filters__label filters__label--{{ open_closed }}'>
+			<a class='toggle-link' data-target="{{ data_target }}">{{ label }}</a>
+			<a class='filters__return' href='#pass-bar-chart'>Back to top</a>
+		</h3>
+{% endmacro %}
+
 <section id='filters'>
 	<h2>Filter by ...</h2>
 	<div class='passes__filters filters'>
-		<h3 class='filters__label'>
+
+		{# #################################### #}
+		{{ section_header("Pass Result", "pass-result", "open") }}
+{# 		<h3 class='filters__label'>
 			<a class='toggle-link' data-target="pass-result">Pass Result</a>
-		</h3>
+		</h3> #}
 		<div class='filters__section filters__section--pass-result'>
 			<div class='filters__column'>
 				<a class='filter-button' href="#" data-filter-category='INT' data-filter-value=1>INT</a>
-			<a class='filter-button' href="#" data-filter-category='INT' data-filter-value=0>NO INT</a>
-						<a class='filter-button' href="#" data-filter-category='FIRST_DOWN' data-filter-value=1>FOR 1ST DOWN</a>
-
+				<a class='filter-button' href="#" data-filter-category='INT' data-filter-value=0>NO INT</a>
+				<a class='filter-button' href="#" data-filter-category='FIRST_DOWN' data-filter-value=1>FOR 1ST DOWN</a>
 			</div>
 			<div class='filters__column'>
 				<a class='filter-button' href="#" data-filter-category='COMPLETION' data-filter-value=1>COMPLETE</a>
-			<a class='filter-button' href="#" data-filter-category='COMPLETION' data-filter-value=0>INCOMPLETE</a>
-			<a class='filter-button' href="#" data-filter-category='TD' data-filter-value=1>TD</a>
-			<a class='filter-button' href="#" data-filter-category='TD' data-filter-value=0>NOT A TD</a>
+				<a class='filter-button' href="#" data-filter-category='COMPLETION' data-filter-value=0>INCOMPLETE</a>
+				<a class='filter-button' href="#" data-filter-category='TD' data-filter-value=1>TD</a>
+				<a class='filter-button' href="#" data-filter-category='TD' data-filter-value=0>NOT A TD</a>
 			</div>
 			<div class='filters__column'>
 				
-			<form id='yards-in-air' class='yards-form'>
-				<label class='main-label'>Yards in the air</label>
-				<div class='field-wrapper'>
-					<label for="yia_min">Min: </label>
-					<input type="text" name="yia_min" id="yia_min" class='min' value=-25>
-				</div>
-				<div class='field-wrapper'>
-					<label for="yia_max">Min: </label>
-					<input type="text" name="yia_max" id="yia_max"  class='max' value=100>
-				</div>
-			</form>
+				<form id='yards-in-air' class='yards-form'>
+					<label class='main-label'>Yards in the air</label>
+					<div class='field-wrapper'>
+						<label for="yia_min">Min: </label>
+						<input type="text" name="yia_min" id="yia_min" class='min' value=-25>
+					</div>
+					<div class='field-wrapper'>
+						<label for="yia_max">Min: </label>
+						<input type="text" name="yia_max" id="yia_max"  class='max' value=100>
+					</div>
+				</form>
 
-			<form id='yards-after-catch' class='yards-form'>
-				<label class='main-label'>Yards after catch</label>
-				<div class='field-wrapper'>
-					<label for="yac_min">Min: </label>
-					<input type="text" name="yac_min" id="yac_min" class='min'  value=-25>
-				</div>
-				<div class='field-wrapper'>
-					<label for='yac_max'>Max: </label>
-					<input type="text" name="yac_max" id="yac_max"  class='max' value=100>
-				</div>
-			</form>
+				<form id='yards-after-catch' class='yards-form'>
+					<label class='main-label'>Yards after catch</label>
+					<div class='field-wrapper'>
+						<label for="yac_min">Min: </label>
+						<input type="text" name="yac_min" id="yac_min" class='min'  value=-25>
+					</div>
+					<div class='field-wrapper'>
+						<label for='yac_max'>Max: </label>
+						<input type="text" name="yac_max" id="yac_max"  class='max' value=100>
+					</div>
+				</form>
 
 			</div>
 		</div>
-		<h3 class='filters__label'>
-			<a class='toggle-link' data-target="game-situation">Game situation</a>
-		</h3>
+
+		{# #################################### #}
+		{{ section_header("Game situation", "game-situation", "open") }}
 		<div class='filters__section filters__section--game-situation'>
 			<div class='filters__column'>
 				<p class='filters__column-label'>Down & Distance</p>
@@ -82,9 +91,9 @@
 				<a class='filter-button' href="#" data-filter-category='QTR' data-filter-value=5>Overtime</a>
 			</div>			
 		</div>
-		<h3 class='filters__label filters__label--closed'>
-			<a class='toggle-link' data-target="schedule">Schedule (TK: Year, season week)</a>
-		</h3>
+
+		{# #################################### #}
+		{{ section_header("Schedule (TK: Year, season week)", "schedule", "open") }}
 		<div class='filters__section filters__section--schedule filters__section--closed'>
 			<div class='filters__column'>
 				<p class='filters__column-label'>Game Day</p>
@@ -109,24 +118,24 @@
 				<a class='filter-button' href="#" data-filter-category='TIME_BUCKET' data-filter-value="Primetime">Primetime</a>
 			</div>
 		</div>
-		<h3 class='filters__label filters__label--closed'>
-			<a class='toggle-link' data-target="divisions">Division</a>
-		</h3>
+
+		{# #################################### #}
+		{{ section_header("Division", "divisions", "closed") }}
 		<div class='filters__section filters__section--divisions filters__section--closed'>
 			{% for conference in ["NFC", "AFC"] %}
 				{% for division in ["North", "South", "East", "West"]%}
-					<a class='filter-button filter-button--division' data-checked='false'  data-division="{{ conference }}-{{ division }}">
-						<svg viewBox="0 0 250 250" class="nfl-logo" style='height: 55px;width: 55px;margin: 0 15px 0 -11px;'> 
-							<use xlink:href="#{{ conference }}"></use>
-						</svg>
-						{{ conference }} {{ division }}
-					</a>
+				<a class='filter-button filter-button--division' data-checked='false'  data-division="{{ conference }}-{{ division }}">
+					<svg viewBox="0 0 250 250" class="nfl-logo" style='height: 55px;width: 55px;margin: 0 15px 0 -11px;'> 
+						<use xlink:href="#{{ conference }}"></use>
+					</svg>
+					{{ conference }} {{ division }}
+				</a>
 				{% endfor %}
 			{% endfor %}
 		</div>
-		<h3 class='filters__label filters__label--closed'>
-			<a class='toggle-link' data-target="teams">Team</a>
-		</h3>
+
+		{# #################################### #}
+		{{ section_header("Team", "teams", "closed") }}
 		<div class='filters__section filters__section--closed filters__section--teams'>
 			{% for opponent in opponents|sort(attribute="team") %}
 			<a class='filter-button' href="#" data-filter-category='OPP' data-filter-value="{{opponent.team}}" data-conference="{{ opponent.conference }}" data-division="{{ opponent.division }}">
@@ -137,19 +146,19 @@
 			</a> 
 			{% endfor %}
 		</div>
-		<h3 class='filters__label filters__label--closed'>
-			<a class='toggle-link' data-target="receivers">Receiver type</a>
-		</h3>
+
+		{# #################################### #}
+		{{ section_header("Receiver type", "receivers", "closed") }}
 		<div class='filters__section filters__section--receivers filters__section--closed'>
 			{% for position in positions %}
-				<a class='filter-button filter-button--position' data-checked=false data-position="{{ position.abbrv }}">
+			<a class='filter-button filter-button--position' data-checked=false data-position="{{ position.abbrv }}">
 				{{ position.name }}
 			</a> 
 			{% endfor %}
 		</div>
-		<h3 class='filters__label filters__label--closed'>
-			<a class='toggle-link' data-target="players">Player</a>
-		</h3>
+
+		{# #################################### #}
+		{{ section_header("Player", "players", "closed") }}
 		<div class='filters__section filters__section--players filters__section--closed'>
 			{% for receiver in receivers|sort(attribute="name_last") %}
 			<a class='filter-button filter-button--player' href="#" data-filter-category='RECEIVER_ID' data-position="{{ receiver.position }}" data-filter-value="{{receiver.id}}">
@@ -159,5 +168,4 @@
 			{% endfor %}
 		</div>
 	</div>
-</div>
 </section>
