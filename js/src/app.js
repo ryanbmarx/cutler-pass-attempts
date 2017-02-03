@@ -38,7 +38,33 @@ function collectChoices(){
         flatChoices[key] = values;
     })
 
-    window.yardsToGo = [document.getElementById('ytg_min').value, document.getElementById('ytg_max').value];
+    // window.yardsToGo = [document.getElementById('ytg_min').value, document.getElementById('ytg_max').value];
+    // window.yardsInAir = [document.getElementById('yia_min').value, document.getElementById('yia_max').value];
+    // window.yardsAfterCatch = [document.getElementById('yac_min').value, document.getElementById('yac_max').value];
+
+
+    window.forms = [
+        {
+            arrayName:"yardsToGo",
+            inputClass:'ytg',
+            columnHeader:'YTG', 
+            range:[document.getElementById('ytg_min').value, document.getElementById('ytg_max').value]
+        },
+        {
+            arrayName:"yardsInAir",
+            inputClass:'yia',
+            columnHeader:'AIR_YDS',
+            range:[document.getElementById('yia_min').value, document.getElementById('yia_max').value]
+        },
+        {
+            arrayName:"yardsAfterCatch",
+            inputClass:'yac',
+            columnHeader:'YDS_AFTER_CATCH',
+            range:[document.getElementById('yac_min').value, document.getElementById('yac_max').value]
+        }
+    ]
+
+
     console.log('=======================');
     console.log('new choices', flatChoices);
     console.log('new yards to go', window.yardsToGo);
@@ -62,18 +88,20 @@ function filterData(){
             })
         });
 
-        // if either of the the default YTG values has been changes then filter the data based on those user selections
-        if(window.yardsToGo[1] < 100 || window.yardsToGo[0] > 1){
-            console.log('ytg defaults have been changed.')
-            filteredData = _.filter(filteredData, pass => {
-                console.log(pass, ytg, ytg <= window.yardsToGo[1], ytg >= window.yardsToGo[0]);
-                let ytg = parseInt(pass.YTG);
-                if (ytg <= window.yardsToGo[1] && ytg >= window.yardsToGo[0]){
-                    return true;
-                }
-                return false;
-            })
-        }
+        
+        window.forms.forEach(form => {
+            // TODO: Find better way of triggering filter b/c some fields have values less than 1.
+            // if either of the the default YTG values has been changes then filter the data based on those user selections
+                filteredData = _.filter(filteredData, pass => {
+                    let yards = parseInt(pass[form.columnHeader]);
+                    if (yards <= form.range[1] && yards >= form.range[0]){
+                        return true;
+                    }
+                    return false;
+                })
+        })
+
+
 
         // Number of pass attempts in filtered set
         window.filteredTotal = filteredData.length;
@@ -258,6 +286,16 @@ function groupClick(e, attribute, value){
     }
 }
 
+function resetChoices(){
+    d3.selectAll('.filter-button').attr('data-checked', "false");
+    window.forms.forEach( form => {
+        console.log(form, document.querySelector(`#${form.inputClass}_min`), `#${form.inputClass}_min`);
+        
+        document.querySelector(`#${form.inputClass}_min`).value = -25;
+        document.querySelector(`#${form.inputClass}_max`).value = 100;
+        
+    })
+}
 
 window.onload = function(){
 
@@ -282,7 +320,9 @@ window.onload = function(){
         });
     }
 
-    let filterButtons = document.getElementsByClassName('filter-button')
+    let filterButtons = document.getElementsByClassName('filter-button');
+    let submitButtons = document.getElementsByClassName('control-button--submit');
+
     for (var filterButton of filterButtons){
         filterButton.addEventListener('click', e => {
             e.preventDefault();
@@ -300,7 +340,7 @@ window.onload = function(){
 
             // If this is the only checked filter option, then activate/un-mute the submit button(s).
             // If there are no checked filter options, then re-mute the submit button.
-            let submitButtons = document.getElementsByClassName('control-button--submit');
+            // let submitButtons = document.getElementsByClassName('control-button--submit');
             if (document.querySelectorAll('.filter-button--checked').length > 0){
                 for (var submit of submitButtons){
                     submit.classList.remove('muted');
@@ -319,31 +359,22 @@ window.onload = function(){
     // but that class is removed when the first filter option is selected. The class "active" is added, and
     // is required by the function for the event listener.
 
-    let submitButtons = document.getElementsByClassName('control-button--submit');
 
     for (var submit of submitButtons){
         submit.addEventListener('click', function(e) {
             e.preventDefault();
-            if(submit.classList.contains('active')){
+            // if(submit.classList.contains('active')){
                 // Only draw the chart if the button is active, i.e. the user has made filter selections.
-                drawChart();
-            } else {
-                console.log("No selections made, don't redraw");
-            }
+            drawChart();
+            // } else {
+            //     console.log("No selections made, don't redraw");
+            // }
         })  
     }
-        
-    // The selectAll button
-    document.getElementsByClassName('filter-button--selectAll')[0]
-        .addEventListener('click', e => {
-            d3.selectAll('.filter-button').attr('data-filter', 'true');
-        });
 
     // The unSelectAll button
-    document.getElementsByClassName('filter-button--selectNone')[0]
-        .addEventListener('click', e => {
-            d3.selectAll('.filter-button').attr('data-checked', "false");
-        });
+    document.getElementsByClassName('control-button--selectNone')[0]
+        .addEventListener('click', resetChoices);
 
 
     // The toggle labels button
@@ -354,7 +385,23 @@ window.onload = function(){
             });
         });
 
+    let toggles = document.getElementsByClassName('toggle-link');
 
+    for(var toggle of toggles ){
+        console.log(toggle);
+        toggle.addEventListener('click', function(e){
+            const target = e.target.dataset.target;
+            const targetSections = document.querySelectorAll(`.filters__section--${target}`);
+            // console.log(targetSections);
+            for(let targetSection of targetSections){
+                // console.log(target, targetSection);
+                targetSection.classList.toggle('filters__section--hidden');
+                targetSection.classList.toggle('filters__section--visible')
+            }
+            
+            
+        });
+    }
 
     // Loading the data
 	d3.csv(`//${window.ROOT_URL}/data/pass-attempts.csv`, data => {
