@@ -385,18 +385,21 @@ window.onload = function(){
             });
         });
 
-    let toggles = document.getElementsByClassName('toggle-link');
 
+    // This opens/closes each filter section, letting people calm the madness if they choose.
+    let toggles = document.getElementsByClassName('toggle-link');
     for(var toggle of toggles ){
         console.log(toggle);
         toggle.addEventListener('click', function(e){
+            // This turns the open/close indicator triangle on the link's parent element
+            console.log(toggle, toggle.parentElement);
+            e.target.parentElement.classList.toggle(`filters__label--closed`);
+
+            // This opens/closes the section
             const target = e.target.dataset.target;
             const targetSections = document.querySelectorAll(`.filters__section--${target}`);
-            // console.log(targetSections);
             for(let targetSection of targetSections){
-                // console.log(target, targetSection);
-                targetSection.classList.toggle('filters__section--hidden');
-                targetSection.classList.toggle('filters__section--visible')
+                targetSection.classList.toggle('filters__section--closed')
             }
             
             
