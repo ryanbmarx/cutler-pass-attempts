@@ -299,6 +299,11 @@ function resetChoices(){
 
 window.onload = function(){
 
+    // #######################################
+    // ####   EVENT LISTENERS
+    // #######################################
+
+    // ####   POSITION/PLAYERS FILTERS
     // Position buttons, making them select all relevant players
     for (var button of document.getElementsByClassName('filter-button--position')){
         button.addEventListener('click', function(e) {
@@ -306,13 +311,7 @@ window.onload = function(){
         });
     }
 
-    // Conference buttons, making them select all relevant teams
-    for (var button of document.getElementsByClassName('filter-button--conference')){
-        button.addEventListener('click', function(e) {
-            groupClick(e, "conference", e.target.dataset.conference);
-        });
-    }
-
+    // ####   DIVISION/TEAMS FILTERS
     // Division buttons, making them select all relevant teams
     for (var button of document.getElementsByClassName('filter-button--division')){
         button.addEventListener('click', function(e) {
@@ -320,55 +319,25 @@ window.onload = function(){
         });
     }
 
+    // ####   CHECKING/UNCHECKING FILTER BUTTONS
     let filterButtons = document.getElementsByClassName('filter-button');
-    let submitButtons = document.getElementsByClassName('control-button--submit');
 
     for (var filterButton of filterButtons){
         filterButton.addEventListener('click', e => {
             e.preventDefault();
             let filterButton = e.target;
-            let classlist = filterButton.classList;
 
-            // Toggle the checked class on the actual button
-            if(classlist.contains('filter-button--checked')){
-                filterButton.classList.remove('filter-button--checked');
-                filterButton.dataset.checked = false;
-            } else {
-                filterButton.classList.add('filter-button--checked');
-                filterButton.dataset.checked = true;
-            }
-
-            // If this is the only checked filter option, then activate/un-mute the submit button(s).
-            // If there are no checked filter options, then re-mute the submit button.
-            // let submitButtons = document.getElementsByClassName('control-button--submit');
-            if (document.querySelectorAll('.filter-button--checked').length > 0){
-                for (var submit of submitButtons){
-                    submit.classList.remove('muted');
-                    submit.classList.add('active');
-                }
-            } else {
-                for (var submit of submitButtons){
-                    submit.classList.add('muted');
-                    submit.classList.remove('muted');
-                }
-            }
+            // Toggle the checked data-* attribute on the actual button
+            filterButton.dataset.checked = filterButton.dataset.checked == "false" ? "true" : "false";
         })
     }
 
-    // Set up the event listener for the submit buttons. At load, the button is muted with class "muted"
-    // but that class is removed when the first filter option is selected. The class "active" is added, and
-    // is required by the function for the event listener.
-
-
+    // ####   SUBMIT BUTTONS
+    let submitButtons = document.getElementsByClassName('control-button--submit');
     for (var submit of submitButtons){
         submit.addEventListener('click', function(e) {
             e.preventDefault();
-            // if(submit.classList.contains('active')){
-                // Only draw the chart if the button is active, i.e. the user has made filter selections.
             drawChart();
-            // } else {
-            //     console.log("No selections made, don't redraw");
-            // }
         })  
     }
 
@@ -408,7 +377,7 @@ window.onload = function(){
 
     // Loading the data
 	d3.csv(`//${window.ROOT_URL}/data/pass-attempts.csv`, data => {
-        // Start by taking the main data file, slicing off the header_descriotons row.
+        // Start by taking the main data file, slicing off the header_descriptons row.
         window.base_data = data.splice(1, data.length - 1);
         window.aggregated_data = aggregateData(window.base_data);
         window.baseTotal = window.base_data.length;
