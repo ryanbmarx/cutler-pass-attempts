@@ -1,5 +1,7 @@
 import * as d3 from 'd3';
 import * as _ from 'underscore';
+import groupClick from './group-click.js'
+import resetChoices from './reset-choices.js'
 
 // This allows iteration over an HTMLCollection (as I've done in setting the checkbutton event listeners,
 // as outlined in this Stack Overflow question: http://stackoverflow.com/questions/22754315/foreach-loop-for-htmlcollection-elements
@@ -244,57 +246,6 @@ function visualizeData(data){
 
 function drawChart(){
     visualizeData(filterData());
-}
-
-
-function groupClick(e, attribute, value){
-    /*
-        e = event object
-        attribute = the data-* attribute to look for
-        value = the value of the attribute desired
-    */
-
-    const checked = e.target.dataset.checked,
-        filterButtons = document.querySelectorAll(`.filter-button[data-${attribute}]`),
-        splitRegex = "/[,\/ ]/g";
-    if (checked == false || checked == "false"){
-        // If the group selection button is not itself checked, then we want to select the corresponding group.
-
-        // Set the group selection button to checked
-        e.target.dataset.checked = true;
-        for (var filterButton of filterButtons){
-            let dataAttributeValues=filterButton.dataset[attribute].split(/[,\/ ]/g);
-            console.log("CHECKING", attribute, value, value == filterButton.dataset[attribute], dataAttributeValues);
-            if (dataAttributeValues.indexOf(value) > -1){
-                // filterButton.classList.add('filter-button--checked');
-                filterButton.dataset.checked = 'true';
-            }
-        }
-    } else {
-        // If the group selection button already is checked, then we want to remove the corresponding group for the choices selection.
-
-        // Set the group selection button to unchecked
-        e.target.dataset.checked = false;
-        for (var filterButton of filterButtons){
-            let dataAttributeValues=filterButton.dataset[attribute].split(/[,\/ ]/g);
-            console.log("unchecking", attribute, value, value == filterButton.dataset[attribute], dataAttributeValues);
-            if (dataAttributeValues.indexOf(value) > -1){
-                // filterButton.classList.remove('filter-button--checked');
-                filterButton.dataset.checked = false;
-            }
-        }
-    }
-}
-
-function resetChoices(){
-    d3.selectAll('.filter-button').attr('data-checked', "false");
-    window.forms.forEach( form => {
-        console.log(form, document.querySelector(`#${form.inputClass}_min`), `#${form.inputClass}_min`);
-        
-        document.querySelector(`#${form.inputClass}_min`).value = -25;
-        document.querySelector(`#${form.inputClass}_max`).value = 100;
-        
-    })
 }
 
 window.onload = function(){
