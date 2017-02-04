@@ -1,8 +1,8 @@
 {% macro section_header(label, data_target, open_closed) %}
-		<h3 class='filters__label filters__label--{{ open_closed }}'>
-			<a class='toggle-link' data-target="{{ data_target }}">{{ label }}</a>
-			<a class='filters__return' href='#pass-bar-chart'>Back to top</a>
-		</h3>
+	<div class='filters__label filters__label--{{ open_closed }}' data-target="{{ data_target }}">
+		<h3 class='filters__label-text'>{{ label }}</h3>
+		<a class='filters__return' href='#pass-bar-chart'>Back to top</a>
+	</div>
 		{# this opens the ensuing section. I put the opening div here to keep all the related classes/markup in sync #}
 		<div class='filters__section filters__section--{{ data_target }} filters__section--{{ open_closed }}'>
 {% endmacro %}

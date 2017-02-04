@@ -308,12 +308,15 @@ window.onload = function(){
 
 
     // This opens/closes each filter section, letting people calm the madness if they choose.
-    let toggles = document.getElementsByClassName('toggle-link');
-    for(var toggle of toggles ){
-        toggle.addEventListener('click', function(e){
+    let sectionToggles = document.getElementsByClassName('filters__label');
+    for (var sectionToggle of sectionToggles ){
+        sectionToggle.addEventListener('click', function(e){
+            e.preventDefault();
+            console.log('click', e.target);
+        
             // This turns the open/close indicator triangle on the link's parent element
-            e.target.parentElement.classList.toggle(`filters__label--closed`);
-
+            e.target.classList.toggle(`filters__label--closed`);
+        
             // This opens/closes the section
             const target = e.target.dataset.target;
             const targetSections = document.querySelectorAll(`.filters__section--${target}`);

@@ -25,45 +25,71 @@
 
 .filters__label{
 	// Filter section labels, which also contain the open/close link.
-	@include label7();
+	@include clearfix();
+	display:block;
 	cursor:pointer;
-    margin: 0;
-    background: $trib-gray4;
-    padding: 10px;
-	&:before{
-	    content: '\25BC';
-	    display: block;
-	    font-size: 11px;
-	    text-align: center;
-	    line-height: 2em;	
-	    
-	    transition: all 150ms ease;
-	    
-	    float: left;
-	    height: 20px;
-	    width: 20px;
-	    margin: 3px 10px 0 0;
-
-	    background: $bears-blue;
-	    color: white;
-	    border-radius: 50%;
-	    cursor:pointer;
-	}
+	margin: 0;
+	background: $trib-gray4;
+	padding: 10px;
+	position:relative;
 
 	&--closed{
 		margin: 0 0 10px 0;
-		&:before{
+
+		.filters__label-text:before{
 			transform:rotate(-90deg);
 			transition:all 150ms  ease;
 		}
 	}
+
+	.filters__label-text{
+		@include label7();
+		margin:0;
+		display:inline-block;
+		pointer-events: none;
+
+		&:before{
+			content: '\25BC';
+			display: block;
+			font-size: 11px;
+			text-align: center;
+			line-height: 2em;	
+
+			transition: all 150ms ease;
+
+			float: left;
+			height: 20px;
+			width: 20px;
+			margin: 3px 10px 0 0;
+
+			background: $bears-blue;
+			color: white;
+			border-radius: 50%;
+			cursor:pointer;
+		}
+	}
 }
+
 
 .filters__return{
 	// Back to top link in the section headers
 	@include sans-serif();
 	font-style: italic;
-	float:right
+	background:rgba(white, .35);
+	position:absolute;
+	top:0;
+	right:0;
+	margin: 0 0 0 0;
+	padding:0 15px;
+	height:100%;
+
+	display:flex;
+	align-items:center;
+	cursor:pointer;
+
+	&:hover{
+		background:rgba(white, .1);
+	}
 }
 
 .trb_mainContent .filters__column-label{
