@@ -34,6 +34,13 @@
 		background-color:$bears-orange;
 	}
 
+	&--labels{
+		background-color:rgba($bears-blue, .4);
+		&.checked {
+			background-color:$bears-blue;
+		}
+	}
+
 	&.muted{
 		opacity:.3;
 		cursor:not-allowed;
@@ -42,7 +49,4 @@
 		}
 	}
 }
-
-
-
 
