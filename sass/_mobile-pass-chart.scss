@@ -19,7 +19,7 @@
 	}
 	.passes__row--labels{
 		.passes__column{
-			// These are the  yardage labels
+			// These are the  yardage labelss
 		    transform: rotate(90deg);
 		    padding:0;
 		    .passes__inner{
@@ -41,7 +41,12 @@
 		display:block;
 	}
 }
-    
+  
+.passes__circle .passes__count{
+	transform: rotate(90deg);
+	font-size: 19px;
+}
+
 // We want the bar chart to match the passes chart, to maintain the visual link between them.
 .passes__bar-chart{
 	max-width: 280px;
