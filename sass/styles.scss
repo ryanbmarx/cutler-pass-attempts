@@ -6,6 +6,9 @@ $column_height:60px;
 // $chart_width:($column_dimension * 6) + 30px;
 $circle_dimension:1px;
 
+$tablet-max-width:850px;
+$mobile-max-width:450px;
+
 // ---- ADD MORE VARIABLES HERE ---------------------------------------------
 
 // Required for everything, too, but can be broken down into smaller explicit imports if desired. 
@@ -176,6 +179,15 @@ $circle_dimension:1px;
 	@include agate();
 }
 
-@media all and (max-width: 850px){
+@media all and (max-width: $tablet-max-width){
+	.passes__circle{
+		transform:scale(.7);
+	}
+}
 
+
+@media all and (max-width: $mobile-max-width){
+	.passes__circle{
+		transform:scale(.5);
+	}
 }

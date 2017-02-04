@@ -160,7 +160,7 @@
 		{# <div class='filters__section filters__section--players filters__section--closed'> #}
 			{% for receiver in receivers|sort(attribute="name_last") %}
 			<a class='filter-button filter-button--player' href="#" data-filter-category='RECEIVER_ID' data-position="{{ receiver.position }}" data-filter-value="{{receiver.id}}">
-				<img style='height:45px;width:45px;margin:0 15px 0 7px;' src='http://{{ ROOT_URL }}/img/silhouette.png' alt="Chicago Bear {{ receiver.name_first }} {{ receiver.name_last }} ({{ receiver.position }})"/>
+				<img style='height:45px;width:45px;' src='http://{{ ROOT_URL }}/img/silhouette.png' alt="Chicago Bear {{ receiver.name_first }} {{ receiver.name_last }} ({{ receiver.position }})"/>
 				{{ receiver.name_first }} {{ receiver.name_last }} ({{ receiver.position }})
 			</a> 
 			{% endfor %}

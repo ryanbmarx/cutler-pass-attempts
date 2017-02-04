@@ -205,6 +205,7 @@
 			// Most of these styles are inline to prevent massive mugshots before CSS loads via JS.
 			border-radius:50%;
 			border:3px solid $trib-gray4;
+			margin:0 15px 0 7px;
 		}
 	}
 }
@@ -215,4 +216,36 @@
 	}
 }
 
+@media all and (max-width: $tablet-max-width){
 
+}
+
+
+@media all and (max-width: $mobile-max-width){
+	.yards-form{ text-align:center; }
+	.filters__section{
+		// dial back on the design for mobile
+		border:none;
+		padding:0;
+		margin:15px 0;
+	}
+
+	.filters__column{ width: 100%; }
+	
+	.filters__section--players {
+		.filter-button{ 
+			flex-direction: column-reverse;
+			width: 31%;
+			text-align: center;
+			img{
+				display: block;
+				margin:7px auto;
+			}
+		}
+	}
+	// .filters__section--receivers .filter-button{}
+	.filters__section--divisions, 
+	.filters__section--teams {
+		.filter-button{ width: 48% }
+	}
+}

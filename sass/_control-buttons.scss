@@ -1,5 +1,6 @@
 .control-buttons{
 	display:flex;
+	flex-wrap:wrap;
 	justify-content:space-between;
 	margin: 15px 0;
 }
@@ -17,7 +18,7 @@
 	border:1px solid $trib-gray3;
 	background-color:$bears-blue;
 	
-	width:32%;
+	width:23%;
 	opacity:.8;
 
 	transition: all 150ms;
@@ -50,3 +51,15 @@
 	}
 }
 
+@media all and (max-width: $tablet-max-width){
+	.trb_mainContent .control-button {
+		font-size: 14px;
+	}
+}
+
+
+@media all and (max-width: $mobile-max-width){
+	.trb_mainContent .control-button {
+		width:48%;
+	}
+}
