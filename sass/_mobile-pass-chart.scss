@@ -1,0 +1,50 @@
+// These are just the tweaks needed to rotate the chart. 
+// The idea is they will be @imported into the proper media query
+
+.trb_mainContent .passes{
+	transform: rotate(-90deg);
+    transform-origin: center center;
+    transform-origin: 148px 148px;
+	
+	// Height and width are reversed, but we need to lock in both dimensions to make the chart easier to position 
+    height: 280px;
+    width:304px;
+    margin:20px auto;
+
+    // overflow: hidden;
+    // border: 1px dashed blue;
+
+    .passes__column {
+    	height: 47px;
+	}
+	.passes__row--labels{
+		.passes__column{
+			// These are the  yardage labels
+		    transform: rotate(90deg);
+		    padding:0;
+		    .passes__inner{
+		    	border-bottom:none;
+		    	border-right:none;
+		    }
+		}
+	}
+	.passes__column--label .passes__inner span{
+		// These are the left-to-right labels
+		transform:rotate(90deg);
+	}
+
+	.hide-mobile{
+		display:none;
+	}
+
+	.show-mobile{
+		display:block;
+	}
+}
+    
+// We want the bar chart to match the passes chart, to maintain the visual link between them.
+.passes__bar-chart{
+	max-width: 280px;
+	margin-left:auto;
+	margin-right:auto;
+}

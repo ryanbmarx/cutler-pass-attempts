@@ -105,12 +105,17 @@ $mobile-max-width:450px;
 		justify-content: center;
 		border-right:1px solid white;
 		border-bottom:1px solid white;
-	
-		p {
-		@include agate();
-		font-weight: bold;
 	}
+		&--label span {
+			// The Left -> Right labels
+			@include agate();
+			font-weight: bold;
 		}
+		
+}
+
+.show-mobile{
+	display:none;
 }
 
 .passes__circle{
@@ -187,6 +192,7 @@ $mobile-max-width:450px;
 
 
 @media all and (max-width: $mobile-max-width){
+	@import 'mobile-pass-chart';
 	.passes__circle{
 		transform:scale(.5);
 	}

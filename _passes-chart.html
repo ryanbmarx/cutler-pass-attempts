@@ -1,17 +1,20 @@
-{% macro addFieldColumns(row, label) %}
+{% macro addFieldColumns(row, label_desk, label_mob) %}
 	{% for column in viz_labels|sort(attribute='order') %}
 		{% if loop.first %}
 			<div class='passes__column passes__column--label'>
 				<div class='passes__inner'>
 					{# Left side --> Right side labels #}
-					<p>{{ label }}</p>
+					<span class='hide-mobile'>{{ label_desk }}</span>
+					<span class='show-mobile'>{{ label_mob }}</span>
 				</div>
 			</div>
 		{% endif %}
 		<div class='passes__column passes__column--{{ column.column }}'>
 			<div class='passes__inner'>
 				<span data-row="{{ row }}" data-column="{{ column.column }}" class='passes__circle'>
-					<small class='passes__count hidden'></small>
+					<small class='passes__count hidden'>
+						{# The circle labels #}
+					</small>
 				</span>
 			</div>
 		</div>
@@ -25,12 +28,14 @@
 		{% for label in viz_labels|sort(attribute='order') %}
 			{% if loop.first %}
 				<div class="passes__column">
-					<div class='passes__inner'></div>
+					<div class='passes__inner'>
+						{# This is a flex container to hold and center the circle #}
+					</div>
 				</div>
 			{% endif %}
 			<div class="passes__column">
 				<div class='passes__inner'>
-					{# Yardage labels #}
+					{# Yardage labels: desktop and mobile versions #}
 					<span class='hide-mobile'>{{ label.label_desk }}</span>
 					<span class='show-mobile'>{{ label.label_mob }}</span>
 				</div>
@@ -40,7 +45,7 @@
 	{% for row in rows %}
 	<div class='passes__row passes__row--{{ row.row }}'>
 		{# This macro drops the column/boxes into each row #}
-		{{ addFieldColumns(row.row, row.label) }}
+		{{ addFieldColumns(row.row, row.label_desk, row.label_mob) }}
 	</div>
 	{% endfor %}
 </div>
