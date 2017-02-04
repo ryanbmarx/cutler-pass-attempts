@@ -65,12 +65,6 @@ function collectChoices(){
             range:[document.getElementById('yac_min').value, document.getElementById('yac_max').value]
         }
     ]
-
-
-    console.log('=======================');
-    console.log('new choices', flatChoices);
-    console.log('new yards to go', window.yardsToGo);
-
     return flatChoices;
 }
 
@@ -112,8 +106,6 @@ function filterData(){
         window.totalFilteredGames = _.uniq(filteredData, false, pass =>{
             return pass.GDATE;
         }).length;
-
-        console.log('Total games in filtered data: ', window.totalFilteredGames);
         return aggregateData(filteredData);    
 }
 
@@ -180,7 +172,6 @@ function initChart(){
 }
 
 function visualizeData(data){
-    console.log('Redrawing chart');
     console.log('New data', data);
     var passes = document.querySelectorAll('.passes__circle');
     passes.forEach(function(pass) {
@@ -259,6 +250,7 @@ window.onload = function(){
     for (var button of document.getElementsByClassName('filter-button--position')){
         button.addEventListener('click', function(e) {
             groupClick(e, "position", e.target.dataset.position);
+            e.target.dataset.checked = e.target.dataset.checked == "true" ? "false" : "true";
         });
     }
 
@@ -267,6 +259,7 @@ window.onload = function(){
     for (var button of document.getElementsByClassName('filter-button--division')){
         button.addEventListener('click', function(e) {
             groupClick(e, "division", e.target.dataset.division);
+            e.target.dataset.checked = e.target.dataset.checked == "true" ? "false" : "true";
         });
     }
 
@@ -300,6 +293,14 @@ window.onload = function(){
     // The toggle labels button
     document.getElementsByClassName('control-button--labels')[0]
         .addEventListener('click', e => {
+            if(e.target.classList.contains('checked')){
+                e.target.innerHTML = "SHOW LABELS";
+                e.target.classList.remove('checked');
+            } else {
+                e.target.innerHTML = "HIDE LABELS";
+                e.target.classList.add('checked');
+            }
+
             document.querySelectorAll('.passes__count').forEach(function(label){
                 label.classList.toggle('hidden');
             });
@@ -309,10 +310,8 @@ window.onload = function(){
     // This opens/closes each filter section, letting people calm the madness if they choose.
     let toggles = document.getElementsByClassName('toggle-link');
     for(var toggle of toggles ){
-        console.log(toggle);
         toggle.addEventListener('click', function(e){
             // This turns the open/close indicator triangle on the link's parent element
-            console.log(toggle, toggle.parentElement);
             e.target.parentElement.classList.toggle(`filters__label--closed`);
 
             // This opens/closes the section
