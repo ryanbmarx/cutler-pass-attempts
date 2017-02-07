@@ -277,7 +277,7 @@ window.onload = function(){
     }
 
     // ####   SUBMIT BUTTONS
-    let submitButtons = document.getElementsByClassName('control-button--submit');
+    let submitButtons = document.querySelectorAll("[data-button-type='submit']");
     for (var submit of submitButtons){
         submit.addEventListener('click', function(e) {
             e.preventDefault();

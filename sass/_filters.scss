@@ -71,11 +71,14 @@
 }
 
 
-.filters__return{
+.trb_mainContent .filters__submit{
 	// Back to top link in the section headers
 	@include sans-serif();
 	font-style: italic;
-	background:rgba(white, .35);
+	background-color:rgba($bears-orange, .8);
+	transition:all 150ms;
+	color:white;
+	
 	position:absolute;
 	top:0;
 	right:0;
@@ -88,7 +91,9 @@
 	cursor:pointer;
 
 	&:hover{
-		background:rgba(white, .1);
+		background-color:rgba($bears-orange, 1);
+		transition:all 150ms;
+		color: white;
 	}
 }
 
