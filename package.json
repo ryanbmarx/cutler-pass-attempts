@@ -8,8 +8,7 @@
     "build": "npm run getCsv && grunt && npm run icons",
     "watch": "grunt watch",
     "getCsv": "node scripts/downloadCSV.js 'https://docs.google.com/spreadsheets/d/1ZXvIfK-UR8Y6x1dEr7KNs6gLs5M_vxS1yY51hMa39nc/pub?gid=1292379928&single=true&output=csv' './data/pass-attempts.csv'",
-    "icons" : "svg-sprite-generate -d img/svgSrc -o img/nfl-logos.svg",
-    "icons" : "svg-sprite --defs --dest img/sprite.svg  img/svgSrc/*.svg"
+    "icons": "svg-sprite --defs --dest img/sprite.svg  img/svgSrc/*.svg"
   },
   "repository": {
     "type": "git",
@@ -36,6 +35,7 @@
   "tribune": {},
   "dependencies": {
     "d3": "^4.4.0",
+    "smoothscroll-polyfill": "^0.3.4",
     "underscore": "^1.8.3"
   }
 }

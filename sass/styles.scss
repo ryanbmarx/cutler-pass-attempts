@@ -38,11 +38,9 @@ $mobile-max-width:450px;
 
 // ---- WRITE MORE PROJECT STYLES HERE ---------------------------------------------
 
-// .chart{
-// 	width: $chart_width;
-// 	background-color:#eee;
-// }
-
+window, html, body{
+	scroll-behavior:smooth;
+}
 
 .trb_mainContent .notes p{
 	@include agate();

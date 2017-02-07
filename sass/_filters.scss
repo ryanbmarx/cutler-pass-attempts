@@ -73,11 +73,12 @@
 
 .trb_mainContent .filters__submit{
 	// Back to top link in the section headers
-	@include sans-serif();
-	font-style: italic;
+	@include sans-serif-text(14px, 1em, bold);
+	// font-style: italic;
 	background-color:rgba($bears-orange, .8);
 	transition:all 150ms;
 	color:white;
+	text-transform:uppercase;
 	
 	position:absolute;
 	top:0;

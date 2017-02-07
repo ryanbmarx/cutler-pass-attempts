@@ -2,6 +2,7 @@ import * as d3 from 'd3';
 import * as _ from 'underscore';
 import groupClick from './group-click.js'
 import resetChoices from './reset-choices.js'
+require('smoothscroll-polyfill').polyfill;
 
 // This allows iteration over an HTMLCollection (as I've done in setting the checkbutton event listeners,
 // as outlined in this Stack Overflow question: http://stackoverflow.com/questions/22754315/foreach-loop-for-htmlcollection-elements
@@ -281,7 +282,11 @@ window.onload = function(){
     for (var submit of submitButtons){
         submit.addEventListener('click', function(e) {
             e.preventDefault();
+            
+            // Uses node-based polyfill for new native scrolling spec.
+            document.querySelector('#pass-bar-chart').scrollIntoView({ behavior: 'smooth' });
             drawChart();
+
         })  
     }
 
