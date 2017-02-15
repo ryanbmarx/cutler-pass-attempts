@@ -1,7 +1,7 @@
 // Enables for Tribune colors, but is required for everything.
 @import 'base-variables';
 // $column_dimension:80px;
-$column_width:10%;
+$column_width:(100% / 9);
 $column_height:60px;
 // $chart_width:($column_dimension * 6) + 30px;
 $circle_dimension:1px;

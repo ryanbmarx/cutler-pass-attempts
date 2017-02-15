@@ -119,10 +119,8 @@ function aggregateData(data){
     *************/
 
     var groupedRows = _.groupBy(data, pass => {
-        let yardage = parseInt(pass.YDS);
-        if(pass.COMPLETION != 1){
-            return 'incomplete'
-        } else if (yardage <= 0){
+        let yardage = parseInt(pass.AIR_YDS);
+        if (yardage <= 0){
             return 'negativeToZero';
         } else if (yardage < 5){
             return '1-4';
