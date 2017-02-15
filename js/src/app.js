@@ -115,10 +115,13 @@ function aggregateData(data){
     /************
     // All this function does is take a json object as input and aggregate the number
     // of pass attempts into buckets of 20 yards and, within those buckets, by the five 
-    // target areas. The end result should look like this: 
+    // target areas. 
     *************/
 
-    var groupedRows = _.groupBy(data, pass => {
+    let groupedRows = {};
+    
+    // Start by grouping all the rows of data (pass attempts) by the AIR_YDS attribute. This will be the x coordinate in our little chart
+    let groupedByYards = _.groupBy(data, pass => {
         let yardage = parseInt(pass.AIR_YDS);
         if (yardage <= 0){
             return 'negativeToZero';
@@ -138,11 +141,26 @@ function aggregateData(data){
             return '60-plus';
         }
     });
-    let rowKeys = Object.keys(groupedRows);
+
+    
+
+    let rowKeys = Object.keys(groupedByYards);
+    
     rowKeys.forEach((row, index) => {
-        let tempRow =  _.countBy(groupedRows[row], pass => pass.FIELD_TARGET);
+        // Cycle through each x/y element in the data and group the rows by complete/incomplete(& int)
+        let tempRow = _.groupBy(groupedByYards[row], pass => {
+            return pass.COMPLETION == 1 ? "complete" : "incomplete";
+        });
+
+        ["complete", "incomplete"].forEach(result => {
+            // Replace each facet of the temp row (currently all the rows of data) with the row count
+            // tempRow[result] = _.countBy(tempRow[result], )
+        })
+        console.log(tempRow);
+        
         groupedRows[row] = tempRow;
     })
+    
     return groupedRows;
 }   
 
@@ -171,7 +189,7 @@ function initChart(){
 }
 
 function visualizeData(data){
-    console.log('New data', data);
+    // console.log('New data', data);
     var passes = document.querySelectorAll('.passes__circle');
     passes.forEach(function(pass) {
         let column = pass.dataset.column;

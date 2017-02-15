@@ -11,10 +11,11 @@
 		{% endif %}
 		<div class='passes__column passes__column--{{ column.column }}'>
 			<div class='passes__inner'>
-				<span data-row="{{ row }}" data-column="{{ column.column }}" class='passes__circle'>
-					<span class='passes__count hidden'>
+				<span data-row="{{ row }}" data-column="{{ column.column }}" class='passes__circle passes__circle--all'></span>
+				<span data-row="{{ row }}" data-column="{{ column.column }}" class='passes__circle passes__circle--complete'>
+					{# <span class='passes__count hidden'> #}
 						{# The circle labels #}
-					</span>
+					{# </span> #}
 				</span>
 			</div>
 		</div>
