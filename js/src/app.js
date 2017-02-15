@@ -45,7 +45,7 @@ function collectChoices(){
     // window.yardsInAir = [document.getElementById('yia_min').value, document.getElementById('yia_max').value];
     // window.yardsAfterCatch = [document.getElementById('yac_min').value, document.getElementById('yac_max').value];
 
-
+    // For any min/max yardage forms, these choices are collected using this array.
     window.forms = [
         {
             arrayName:"yardsToGo",
