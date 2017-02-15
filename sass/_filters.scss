@@ -71,6 +71,7 @@
 }
 
 
+
 .trb_mainContent .filters__submit{
 	// Back to top link in the section headers
 	@include sans-serif-text(14px, 1em, bold);
@@ -112,7 +113,7 @@
 	z-index:1000;
 	padding: 15px 0;
 	margin: 0 0 10px 0;
-	// width: 31%;
+	width: 100%;
 	border:1px solid $trib-gray3;
 	background-color:transparent;
 	text-align:center;
@@ -176,7 +177,7 @@
 		justify-content: flex-start;
 		align-items:center;
 		text-align:left;
-		// width: 19%;
+		// width: 19%;button
 		padding:0;
 
 		svg{
