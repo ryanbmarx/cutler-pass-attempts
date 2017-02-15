@@ -154,13 +154,10 @@ function aggregateData(data){
 
         ["complete", "incomplete"].forEach(result => {
             // Replace each facet of the temp row (currently all the rows of data) with the row count
-            // tempRow[result] = _.countBy(tempRow[result], )
-        })
-        console.log(tempRow);
-        
+            tempRow[result] = _.countBy(tempRow[result], pass => pass.FIELD_TARGET);
+        })  
         groupedRows[row] = tempRow;
     })
-    
     return groupedRows;
 }   
 
