@@ -38,6 +38,17 @@ function filterData(){
         window.totalFilteredGames = _.uniq(filteredData, false, pass =>{
             return pass.GDATE;
         }).length;
+
+        // Number of completed passes in filtered set
+        const tempCompletion = _.countBy(filteredData, d => {
+            return d.COMPLETION == 1;
+        })['true'];
+
+        window.completedPasses = tempCompletion > 0 ? tempCompletion : 0;
+        
+        console.log(window.completedPasses);
+
+
         return aggregateData(filteredData);    
 }
 

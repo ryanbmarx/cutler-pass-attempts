@@ -4,13 +4,13 @@ import * as d3 from "d3";
 
 // This styles the chart legend
 
-function drawLegend(){
+function drawLegend(rScale){
 	const	allPasses = 300,
 			completePasses = 100,
 			lineOffset = 15,
 			textOffset = 5,
-			scaledAllPass = window.rScale(allPasses) / 2, // circle radius/not diameter
-			scaledCompletePass = window.rScale(completePasses) / 2; // circle radius/not diameter
+			scaledAllPass = rScale(allPasses) / 2, // circle radius/not diameter
+			scaledCompletePass = rScale(completePasses) / 2; // circle radius/not diameter
 	
 	const legend = d3.select('#legend')
 		.append('svg')
