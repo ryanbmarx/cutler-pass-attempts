@@ -37,6 +37,7 @@ $mobile-max-width:450px;
 @import 'control-buttons';
 @import 'filters';
 @import 'legend';
+@import 'top-charts';
 
 
 // ---- WRITE MORE PROJECT STYLES HERE ---------------------------------------------
@@ -153,41 +154,6 @@ window, html, body{
 }
 
 
-
-.trb_mainContent .chart{
-	margin-bottom: 10px;
-	&__label{
-		@include sans-serif();
-		margin: 0 0 10px 0;
-	}
-
-	&__now-showing, &__total, &__total-games{
-		font-weight: bold;
-	}
-
-	&__bar-wrapper{
-			display:flex;
-	justify-content:flex-start;
-	align-items:center;
-		width:100%;
-		background-color: rgba($bears_orange, .4); 
-	}
-
-	&__bar{
-		height:25px;
-		background-color:$bears_orange;
-		display:flex;
-		justify-content: flex-end;
-		align-items:center;
-	}
-
-	&__bar-label{
-			@include sans-serif();
-			font-weight: bold;
-			padding:0  5px;
-			color:white;
-		}
-}
 
 .trb_mainContent .credits p{
 	@include agate();

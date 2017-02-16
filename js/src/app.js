@@ -5,6 +5,7 @@ import resetChoices from './reset-choices.js';
 import drawLegend from './draw-legend.js';
 import filterData from './filter-data.js';
 import aggregateData from './aggregate-data.js';
+import drawPieChart from './pie-chart.js';
 
 
 // This allows iteration over an HTMLCollection (as I've done in setting the checkbutton event listeners,
@@ -37,6 +38,8 @@ function initChart(){
     // Update the total in the bar chart
     d3.select('.chart__total')
         .text(d3.format(',')(window.baseTotal));
+
+    drawLegend(window.rScale);
 }
 
 function visualizeData(data){
@@ -62,8 +65,6 @@ function visualizeData(data){
             }
         }
         
-        
-        // const scaledPassTotal = pass.classList.contains('passes__circle--all') ? window.rScale(passTotal[0] + passTotal[1]) : window.rScale(passTotal[0]);
         if(pass.classList.contains('passes__circle--all')){
             // We don't want the outer circle to just be incompletes.
             // It should be the total attempts (sum of inc and com)
@@ -93,25 +94,25 @@ function visualizeData(data){
 
     // Update the top bar chart
     const barWidthAsPercentage = window.filteredTotal / window.baseTotal;
-    const total_width = d3.select('.chart__bar-wrapper').node().getBoundingClientRect().width;
-    d3.select('.chart__bar')
+    const total_width = d3.select('.bar-chart__bar-wrapper').node().getBoundingClientRect().width;
+    d3.select('.bar-chart__bar')
         .transition()
         .duration(1000)
         .style('width', `${total_width * barWidthAsPercentage}px`)
 
 
-        d3.select('.chart__bar-label').remove();
+        d3.select('.bar-chart__bar-label').remove();
         if(total_width * barWidthAsPercentage > 150){
             
-            d3.select('.chart__bar')
+            d3.select('.bar-chart__bar')
                 .append('small')
-                .classed('chart__bar-label', true);
+                .classed('bar-chart__bar-label', true);
 
         } else {
             
-            d3.select('.chart__bar-wrapper')
+            d3.select('.bar-chart__bar-wrapper')
                 .append('small')
-                .classed('chart__bar-label', true);
+                .classed('bar-chart__bar-label', true);
         }
 
     d3.select('.chart__bar-label')
@@ -123,11 +124,25 @@ function visualizeData(data){
     d3.select('.chart__total-games')
         .text(d3.format(',')(window.totalFilteredGames));
 
+    let completionPercentage = window.completedPasses / window.filteredTotal;
+    // let completionPercentageChart = d3.select('#completion-percentage-chart');
+    // completionPercentageChart.selectAll('*').remove();
+    // completionPercentageChart.append('div')
+        // .classed('pie', true)
+        // .classed(`turn${Math.round(completionPercentage * 100)}`, true);
+
+    drawPieChart('#completion-percentage-chart', completionPercentage);
+    //         <div class='pie turn0'>
+    //     <small>0%</small>
+    // </div>
+
+    // d3.select('.completion-percentage')
+    //     .text(`<p>Completion percentage: ${d3.format('.1%')(completionPercentage)} (${window.completedPasses} / ${window.filteredTotal})</p>`)
+
 }
 
 function drawChart(){
     visualizeData(filterData());
-    drawLegend();
 }
 
 window.onload = function(){
@@ -197,7 +212,6 @@ window.onload = function(){
             }
 
             document.querySelectorAll('.passes__count').forEach(function(label){
-                console.log(label);
                 label.classList.toggle('hidden');
             });
         });
