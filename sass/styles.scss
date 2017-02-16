@@ -2,7 +2,7 @@
 @import 'base-variables';
 // $column_dimension:80px;
 $column_width:(100% / 9);
-$column_height:60px;
+$column_height:90px;
 // $chart_width:($column_dimension * 6) + 30px;
 $circle_dimension:1px;
 
@@ -120,7 +120,8 @@ window, html, body{
 	display:flex;
 	justify-content:center;
 	align-items:center;
-	background-color:rgba($bears_orange, .5);
+	  background-blend-mode: multiply;
+
 	border-radius:50%;
 	position:absolute;
 	top:50%;
@@ -130,6 +131,12 @@ window, html, body{
 	margin: #{0 - ($circle_dimension / 2)} 0 0 #{0 - ($circle_dimension / 2)};
     z-index: 1000;
 	transition: all 400ms;
+	&--all{
+		background-color:rgba($bears_orange, .51);
+	}
+	&--complete{
+		background-color:rgba($bears_blue, 1);	
+	}
 
 	.passes__count{
 		@include agate();
