@@ -228,12 +228,12 @@ function visualizeData(data){
             .style('margin', `${-0.5 * scaledPassTotal}px 0 0 ${-0.5 * scaledPassTotal}px`)
                 .select('.passes__count')
                     .style('opacity',0)
-                    .text(passTotal)
-                    .style('font-weight', () => {
-                        return passTotal > 0 ? "bold" : "normal";
-                    })
+                    .text(`${passTotal[0]}/${passTotal[0]+passTotal[1]}`)
+                    // .style('font-weight', () => {
+                    //     return passTotal[1] > 0 ? "bold" : "normal";
+                    // })
                     .style('color', () => {
-                        return passTotal > 0 ? "black" : "transparent";
+                        return passTotal[0]+passTotal[1] > 0 ? "black" : "transparent";
                     })
                     .transition()
                     .duration(1000)
@@ -345,6 +345,7 @@ window.onload = function(){
             }
 
             document.querySelectorAll('.passes__count').forEach(function(label){
+                console.log(label);
                 label.classList.toggle('hidden');
             });
         });
