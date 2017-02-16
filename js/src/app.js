@@ -142,40 +142,44 @@ function aggregateData(data){
         }
     });
 
+    let colKeys = Object.keys(groupedByYards);
     
+    colKeys.forEach((col, index) => {
+        // Group the passes into field target zones (L->R) 
+        let temp =  _.groupBy(groupedByYards[col], pass => pass.FIELD_TARGET);
 
-    let rowKeys = Object.keys(groupedByYards);
-    
-    rowKeys.forEach((row, index) => {
-        // Cycle through each x/y element in the data and group the rows by complete/incomplete(& int)
-        let tempRow = _.groupBy(groupedByYards[row], pass => {
-            return pass.COMPLETION == 1 ? "complete" : "incomplete";
-        });
-
-        ["complete", "incomplete"].forEach(result => {
-            // Replace each facet of the temp row (currently all the rows of data) with the row count
-            tempRow[result] = _.countBy(tempRow[result], pass => pass.FIELD_TARGET);
-        })  
-        groupedRows[row] = tempRow;
+        // Grab the specific list of target zones for each row. (We still need to group by inc/comp)
+        let rowKeys = Object.keys(temp);
+        rowKeys.forEach(row =>{
+            temp[row] = _.countBy(temp[row], pass => {
+                return pass.COMPLETION == 1 ? "complete" : "incomplete";
+            });
+        })
+        groupedRows[col] = temp;
     })
+    console.log(groupedRows)
     return groupedRows;
 }   
 
 function initChart(){
     // Creates the scale which will be used to scale all the circles.
-    const maxCircleDiameter = 200;
+    const maxCircleDiameter = 150;
     let passMax = 0, 
     rowKeys = Object.keys(window.aggregated_data),
     colKeys = Object.keys(window.aggregated_data['negativeToZero']);
 
+
+    // Because the complete data is aggregated on initial load, we can cycle through the whole set 
+    // and find the largest figure. This will be the scales domain max 
     rowKeys.forEach(row => {
         colKeys.forEach(column => {
-            if(window.aggregated_data[row][column] && window.aggregated_data[row][column] > passMax){
-                passMax = window.aggregated_data[row][column];
+            let tempTotal = window.aggregated_data[row][column];
+            if(tempTotal && (tempTotal.incomplete + tempTotal.complete) > passMax){
+                passMax = tempTotal.incomplete + tempTotal.complete;
             }
         })
     })
-    
+    console.log(passMax);
     window.rScale = d3.scaleLinear()
         .domain([0, passMax])
         .range([0, maxCircleDiameter]);
@@ -186,17 +190,37 @@ function initChart(){
 }
 
 function visualizeData(data){
-    // console.log('New data', data);
+    console.log('New data', data);
     var passes = document.querySelectorAll('.passes__circle');
     passes.forEach(function(pass) {
         let column = pass.dataset.column;
         let row = pass.dataset.row;
-        let passTotal = 0;
-        if (data[column] != undefined && data[column][row] != undefined && data[column][row] > 0){
-            passTotal = data[column][row];
+        
+        // passTotal is an array of the "complete", "incomplete" totals
+        let passTotal = [0,0];
+        let scaledPassTotal = 0;
+
+        // first, make sure the data has info for this field zone
+        if (data[column] != undefined && data[column][row] != undefined) {
+            // console.log(data[column][row]);
+            // Now, check the complete and incomplete. If they are greater than zero then drop them into the array
+            if (data[column][row]["complete"] > 0){
+                passTotal[0] = data[column][row]["complete"];
+            }
+            if (data[column][row]["incomplete"] > 0){
+                passTotal[1] = data[column][row]["incomplete"];
+            }
         }
-    
-        let scaledPassTotal = window.rScale(passTotal);
+        
+        
+        // const scaledPassTotal = pass.classList.contains('passes__circle--all') ? window.rScale(passTotal[0] + passTotal[1]) : window.rScale(passTotal[0]);
+        if(pass.classList.contains('passes__circle--all')){
+            scaledPassTotal = window.rScale(passTotal[0] + passTotal[1]);
+            
+        } else {
+            scaledPassTotal = window.rScale(passTotal[0]);
+        };
+        
         // Style/size circles and labels
         d3.select(pass)
             .style('height', `${scaledPassTotal}px`)
