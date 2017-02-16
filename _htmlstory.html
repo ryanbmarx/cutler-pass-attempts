@@ -1,11 +1,25 @@
 
 {% block content %}
-{{ intro|markdown}}
-{# {% include '_cutler-loader.html' %} #}
 <div style='display:none;'>
 	{% include 'img/sprite.svg/defs/svg/sprite.css.svg' %}
 </div>
 
+{{ intro|markdown}}
+{# {% include '_cutler-loader.html' %} #}
+<div id='legend' class='legend'>
+{# 	<dl>
+		<dt>
+			<span class='passes__circle passes__circle--all'></span>	
+		</dt>
+		<dd>XX pass attempts</dd>
+		<dt>
+			<span class='passes__circle passes__circle--complete'></span>	
+		</dt>
+		<dd>XX completions</dd>
+	</dl>
+	<div class='horiz-rule horiz-rule--complete'></div>
+	<div class='horiz-rule horiz-rule--all'></div> #}
+</div>
 {% include '_bar-chart.html' %}
 {% include '_passes-chart.html' %}
 {% include '_control-buttons.html' %}

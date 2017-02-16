@@ -1,0 +1,28 @@
+.legend {
+	margin-bottom:15px;
+	max-width:280px;
+
+	.legend__circle--all {
+		fill:$all_passes_color;
+	}
+
+	.legend__circle--complete {
+		fill:$complete_passes_color;
+	}
+	
+	.legend__label{
+		@include sans-serif();
+	}
+
+	.legend__line{
+		stroke-width:2;
+
+		&--all{
+			stroke:$all_passes_color;
+		}
+
+		&--complete{
+			stroke:$complete_passes_color;
+		}
+	}
+}

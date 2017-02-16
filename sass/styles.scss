@@ -1,10 +1,12 @@
 // Enables for Tribune colors, but is required for everything.
 @import 'base-variables';
-// $column_dimension:80px;
+
 $column_width:(100% / 9);
 $column_height:90px;
-// $chart_width:($column_dimension * 6) + 30px;
+
 $circle_dimension:1px;
+$complete_passes_color:$bears_blue;
+$all_passes_color:$bears_orange;
 
 $tablet-max-width:850px;
 $mobile-max-width:450px;
@@ -34,6 +36,7 @@ $mobile-max-width:450px;
 @import 'cutler-loader';
 @import 'control-buttons';
 @import 'filters';
+@import 'legend';
 
 
 // ---- WRITE MORE PROJECT STYLES HERE ---------------------------------------------
@@ -132,10 +135,10 @@ window, html, body{
     z-index: 1000;
 	transition: all 400ms;
 	&--all{
-		background-color:rgba($bears_orange, .51);
+		background-color:rgba($all_passes_color, .51);
 	}
 	&--complete{
-		background-color:rgba($bears_blue, 1);	
+		background-color:rgba($complete_passes_color, 1);	
 	}
 
 	.passes__count{

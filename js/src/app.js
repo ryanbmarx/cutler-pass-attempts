@@ -1,8 +1,9 @@
 import * as d3 from 'd3';
 import * as _ from 'underscore';
-import groupClick from './group-click.js'
-import resetChoices from './reset-choices.js'
-require('smoothscroll-polyfill').polyfill;
+import groupClick from './group-click.js';
+import resetChoices from './reset-choices.js';
+import drawLegend from './draw-legend.js';
+// require('smoothscroll-polyfill').polyfill;
 
 // This allows iteration over an HTMLCollection (as I've done in setting the checkbutton event listeners,
 // as outlined in this Stack Overflow question: http://stackoverflow.com/questions/22754315/foreach-loop-for-htmlcollection-elements
@@ -276,6 +277,7 @@ function visualizeData(data){
 
 function drawChart(){
     visualizeData(filterData());
+    drawLegend();
 }
 
 window.onload = function(){
