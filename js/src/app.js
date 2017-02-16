@@ -98,8 +98,6 @@ function filterData(){
                 })
         })
 
-
-
         // Number of pass attempts in filtered set
         window.filteredTotal = filteredData.length;
         
@@ -120,7 +118,8 @@ function aggregateData(data){
 
     let groupedRows = {};
     
-    // Start by grouping all the rows of data (pass attempts) by the AIR_YDS attribute. This will be the x coordinate in our little chart
+    // Start by grouping all the rows of data (pass attempts) by the AIR_YDS attribute. 
+    // These are the columns on desktop
     let groupedByYards = _.groupBy(data, pass => {
         let yardage = parseInt(pass.AIR_YDS);
         if (yardage <= 0){
@@ -143,21 +142,22 @@ function aggregateData(data){
     });
 
     let colKeys = Object.keys(groupedByYards);
-    
     colKeys.forEach((col, index) => {
-        // Group the passes into field target zones (L->R) 
+        // Group each column by rows. Each row is a field target/L>R labeling
         let temp =  _.groupBy(groupedByYards[col], pass => pass.FIELD_TARGET);
 
-        // Grab the specific list of target zones for each row. (We still need to group by inc/comp)
+        // For each row/column cell, group the passes by complete and incomplete, but
+        // all we want is a count of the number of passes fitting the criteria.
         let rowKeys = Object.keys(temp);
         rowKeys.forEach(row =>{
+            // group each of the rows by column
             temp[row] = _.countBy(temp[row], pass => {
                 return pass.COMPLETION == 1 ? "complete" : "incomplete";
             });
         })
+        // Insert our new, aggregated column into the object to be returned.
         groupedRows[col] = temp;
     })
-    console.log(groupedRows)
     return groupedRows;
 }   
 
@@ -179,7 +179,6 @@ function initChart(){
             }
         })
     })
-    console.log(passMax);
     window.rScale = d3.scaleLinear()
         .domain([0, passMax])
         .range([0, maxCircleDiameter]);
@@ -215,8 +214,9 @@ function visualizeData(data){
         
         // const scaledPassTotal = pass.classList.contains('passes__circle--all') ? window.rScale(passTotal[0] + passTotal[1]) : window.rScale(passTotal[0]);
         if(pass.classList.contains('passes__circle--all')){
+            // We don't want the outer circle to just be incompletes.
+            // It should be the total attempts (sum of inc and com)
             scaledPassTotal = window.rScale(passTotal[0] + passTotal[1]);
-            
         } else {
             scaledPassTotal = window.rScale(passTotal[0]);
         };
@@ -239,6 +239,7 @@ function visualizeData(data){
                     .duration(1000)
                     .style('opacity',1);
     })
+
     // Update the top bar chart
     const barWidthAsPercentage = window.filteredTotal / window.baseTotal;
     const total_width = d3.select('.chart__bar-wrapper').node().getBoundingClientRect().width;
