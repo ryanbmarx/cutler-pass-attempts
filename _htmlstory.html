@@ -6,24 +6,11 @@
 
 {{ intro|markdown}}
 {# {% include '_cutler-loader.html' %} #}
-<div id='legend' class='legend'>
-{# 	<dl>
-		<dt>
-			<span class='passes__circle passes__circle--all'></span>	
-		</dt>
-		<dd>XX pass attempts</dd>
-		<dt>
-			<span class='passes__circle passes__circle--complete'></span>	
-		</dt>
-		<dd>XX completions</dd>
-	</dl>
-	<div class='horiz-rule horiz-rule--complete'></div>
-	<div class='horiz-rule horiz-rule--all'></div> #}
-</div>
-{% include '_bar-chart.html' %}
-{% include '_passes-chart.html' %}
-{% include '_control-buttons.html' %}
-{% include '_filters.html' %}
+{% include 'subtemplates/_legend.html' %}
+{% include 'subtemplates/_bar-chart.html' %}
+{% include 'subtemplates/_passes-chart.html' %}
+{% include 'subtemplates/_control-buttons.html' %}
+{% include 'subtemplates/_filters.html' %}
 <div class='credits'>
 	{{ sources|markdown }}
 	{{ credits|markdown }}
