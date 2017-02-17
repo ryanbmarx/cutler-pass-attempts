@@ -1,8 +1,31 @@
-.legend {
+$legend_svg_width: 100px;
+.trb_mainContent .legend {
+	@include clearfix();
 	margin-bottom:15px;
-	max-width:280px;
 	border:1px solid $bears-orange;
 	padding:20px;
+
+	&__content{
+		margin-left: $legend_svg_width + 25px;
+
+				p:first-child{
+			margin-top:0;
+		}
+	}
+
+	&__header{
+		@include label5();
+		margin: 0 0 10px 0;
+	}
+
+
+
+	// The SVG stuff
+
+	&__container{
+		width:$legend_svg_width;
+		float:left;
+	}
 
 	.legend__circle--all {
 		fill:$all_passes_color;
@@ -26,5 +49,19 @@
 		&--complete{
 			stroke:$complete_passes_color;
 		}
+	}
+}
+
+.text-label{
+	font-weight:bold;
+	color:white;
+	display:inline-block;
+	padding:0 3px;
+	&--all{
+
+		background-color: $all_passes_color;
+	}
+	&--complete{
+		background-color: $complete_passes_color;
 	}
 }
