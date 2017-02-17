@@ -160,7 +160,7 @@ window, html, body{
 }
 
 @media all and (max-width: $tablet-max-width){
-	.passes__circle{
+	.legend__circle, .passes__circle{
 		transform:scale(.7);
 	}
 }
@@ -168,7 +168,7 @@ window, html, body{
 
 @media all and (max-width: $mobile-max-width){
 	@import 'mobile-pass-chart';
-	.passes__circle{
+	.legend__circle, .passes__circle{
 		transform:scale(.5);
 	}
 }

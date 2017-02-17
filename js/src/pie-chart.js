@@ -20,15 +20,16 @@ function drawPieChart(container, chartPercentage){
 		bottom: 0,
 		left: 0,
 	}
-	var height = containerRect.height,
-		width = height,
+	var width = containerRect.width,
+		height = width,
 		innerHeight = height - margin.top - margin.bottom,
 		innerWidth = width - margin.left - margin.right,
 		radius = height / 2;
 
+	d3.select(container).selectAll('svg').remove();
 
 	var arc = d3.arc()
-	    .innerRadius(radius / 2)
+	    .innerRadius(radius / 2)// This is the inner circle
 	    .outerRadius(radius)
 	    .startAngle(0);
 
@@ -40,8 +41,14 @@ function drawPieChart(container, chartPercentage){
 			.attr("transform", `translate(${width / 2}, ${height / 2})`)
 			.classed('chart-inner', true);
 	
-	// d3.select('.time-pie-container')
-	// 	.style('transform', 'translate(-291px,490px) scale(2);');
+	chartInner.append('text')
+		.classed('pie-chart__label', true)
+		.style('font-weight', 'bold')
+		.attr("text-anchor", 'middle')
+		.attr('dy', '.3em')
+		// .attr('x',width/2)
+		// .attr('y',height/2)
+		.text(d3.format('.0%')(chartPercentage));
 
 	var background = chartInner.append("path")
 	    .datum({endAngle: tau})
@@ -58,6 +65,8 @@ function drawPieChart(container, chartPercentage){
 		.transition()
 	      	.duration(750)
 	      	.attrTween("d", arcTween(chartPercentage * tau));
+
+
 
       function arcTween(newAngle) {
 		  return function(d) {

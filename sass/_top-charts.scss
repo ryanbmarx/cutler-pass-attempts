@@ -1,64 +1,80 @@
-$pie-chart-dimension:60px;
-.top-charts{
-	@include clearfix();
+$pie-chart-dimension:80px;
 
-	.pie-chart{
-		float:left;
+.trb_mainContent {
+	.top-charts{
+		@include clearfix();
+		margin:25px 0;
+
+		.pie-chart{
+			float:left;
+		}
+
+		.bar-chart{
+			margin-left:$pie-chart-dimension + 25px;
+		}
+
 	}
+
 
 	.bar-chart{
-		margin-left:$pie-chart-dimension + 15px;
-	}
+		margin-bottom: 10px;
+		&__label{
+			@include sans-serif();
+			margin: 0;
+		}
 
-}
+		&__now-showing, &__total, &__total-games{
+			font-weight: bold;
+		}
 
+		&__bar-wrapper{
+			display:flex;
+			justify-content:flex-start;
+			align-items:center;
+			width:100%;
+			background-color: rgba($all_passes_color, .4); 
+			margin-top:10px;
+		}
 
-.trb_mainContent .bar-chart{
-	margin-bottom: 10px;
-	&__label{
-		@include sans-serif();
-		margin: 0 0 10px 0;
-	}
+		&__bar{
+			height:25px;
+			background-color:$bears_orange;
+			display:flex;
+			justify-content: flex-end;
+			align-items:center;
+		}
 
-	&__now-showing, &__total, &__total-games{
-		font-weight: bold;
-	}
-
-	&__bar-wrapper{
-		display:flex;
-		justify-content:flex-start;
-		align-items:center;
-		width:100%;
-		background-color: rgba($bears_orange, .4); 
-	}
-
-	&__bar{
-		height:25px;
-		background-color:$bears_orange;
-		display:flex;
-		justify-content: flex-end;
-		align-items:center;
-	}
-
-	&__bar-label{
+		&__bar-label{
 			@include sans-serif();
 			font-weight: bold;
 			padding:0  5px;
 			color:white;
 		}
+	}
+
+	.pie-chart{
+		// This chart is built with D3. What little CSS there is goes 
+		// toward positioning and keeping certain color choices in sync
+		height:$pie-chart-dimension +22px;
+		width:$pie-chart-dimension;
+		&__label{
+			@include sans-serif();
+			margin:0;
+
+		}
+		.pie-slice{
+			fill: rgba($all_passes_color, .4);
+
+			&.pie-slice--highlight{
+				fill:$complete_passes_color;
+			}
+		}
+	}
 }
 
-.pie-chart{
-	// This chart is built with D3. What little CSS there is goes 
-	// toward positioning and keeping certain color choices in sync
-	height:$pie-chart-dimension;
-	width:$pie-chart-dimension;
-	
-	.pie-slice{
-		fill: rgba($all_passes_color, .4);
-
-		&.pie-slice--highlight{
-			fill:$complete_passes_color;
-		}
+@media all and (max-width: $mobile-max-width){
+	.trb_mainContent .top-charts{
+		.pie-chart{ display:none; }
+		.bar-chart{ margin-left:auto; }
 	}
 }

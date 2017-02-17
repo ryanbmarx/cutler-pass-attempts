@@ -115,13 +115,13 @@ function visualizeData(data){
                 .classed('bar-chart__bar-label', true);
         }
 
-    d3.select('.chart__bar-label')
+    d3.select('.bar-chart__bar-label')
         .text(`${ d3.format('.1%')(barWidthAsPercentage) }`);
 
-    d3.select('.chart__now-showing')
+    d3.select('.bar-chart__now-showing')
         .text(d3.format(',')(window.filteredTotal));
     
-    d3.select('.chart__total-games')
+    d3.select('.bar-chart__total-games')
         .text(d3.format(',')(window.totalFilteredGames));
 
     let completionPercentage = window.completedPasses / window.filteredTotal;

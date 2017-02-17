@@ -12,7 +12,7 @@ function drawLegend(rScale){
 			scaledAllPass = rScale(allPasses) / 2, // circle radius/not diameter
 			scaledCompletePass = rScale(completePasses) / 2; // circle radius/not diameter
 	
-	const legend = d3.select('#legend')
+	const legend = d3.select('#legend__container')
 		.append('svg')
 		.attr('height', 100)
 		.attr('width', '100%');
@@ -20,6 +20,7 @@ function drawLegend(rScale){
 
 	// ADD CIRCLES
 	legend.append('circle')
+		.classed('legend__circle', true)
 		.classed('legend__circle--all', true)
 		.attr('r', scaledAllPass)
 		.attr('cx',scaledAllPass)
@@ -27,6 +28,7 @@ function drawLegend(rScale){
 
 	legend.append('circle')
 		.classed('legend__circle--complete', true)
+		.classed('legend__circle', true)
 		.attr('r', scaledCompletePass)
 		.attr('cx',scaledAllPass)
 		.attr('cy',scaledAllPass);
