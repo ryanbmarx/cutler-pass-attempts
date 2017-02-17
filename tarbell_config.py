@@ -19,7 +19,7 @@ def get_label_keys(thing):
 SPREADSHEET_KEY = "1ZXvIfK-UR8Y6x1dEr7KNs6gLs5M_vxS1yY51hMa39nc"
 
 # Exclude these files from publication
-EXCLUDES = ['subtemplates', 'img/svgSrc/','*.md', 'requirements.txt', 'node_modules', 'sass', 'js/src', 'package.json', 'Gruntfile.js']
+EXCLUDES = ['subtemplates', 'img/mugs/src', 'img/svgSrc/','*.md', 'requirements.txt', 'node_modules', 'sass', 'js/src', 'package.json', 'Gruntfile.js']
 
 # Spreadsheet cache lifetime in seconds. (Default: 4)
 # SPREADSHEET_CACHE_TTL = 4
