@@ -17,6 +17,14 @@ $mobile-max-width:450px;
 @import 'base-mixins';
 // ---- MAKE OR IMPORT MORE MIXINS HERE ---------------------------------------------
 
+@mixin text_stroke($text-color:black, $stroke-color:white, $stroke-width:1px, $stroke-opacity:1){
+	  color:$text-color;
+	  text-shadow:
+		#{0-$stroke-width} #{0-$stroke-width} 0 rgba($stroke-color, $stroke-opacity),  
+		$stroke-width #{0-$stroke-width} 0 rgba($stroke-color, $stroke-opacity),
+		#{0-$stroke-width} $stroke-width rgba($stroke-color, $stroke-opacity),
+		$stroke-width $stroke-width 0 rgba($stroke-color, $stroke-opacity);
+}
 
 // Class imports. Uncomment the ones you want to use.
 // @import 'ngux-visibility-toggles';
