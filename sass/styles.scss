@@ -24,12 +24,18 @@ $mobile-max-width:450px;
 	$stroke-opacity:1,
 	$stroke-blur:0){
 	  
-	  color:$text-color;
-	  text-shadow:
-		#{0-$stroke-width} #{0-$stroke-width} $stroke-blur rgba($stroke-color, $stroke-opacity),  
-		$stroke-width #{0-$stroke-width} $stroke-blur rgba($stroke-color, $stroke-opacity),
-		#{0-$stroke-width} $stroke-width $stroke-blur rgba($stroke-color, $stroke-opacity),
-		$stroke-width $stroke-width $stroke-blur rgba($stroke-color, $stroke-opacity);
+
+  color:$text-color;
+  text-shadow:
+	#{0-$stroke-width} #{0-$stroke-width} $stroke-blur rgba($stroke-color, $stroke-opacity),  
+	$stroke-width #{0-$stroke-width} $stroke-blur rgba($stroke-color, $stroke-opacity),
+	#{0-$stroke-width} $stroke-width $stroke-blur rgba($stroke-color, $stroke-opacity),
+	$stroke-width $stroke-width $stroke-blur rgba($stroke-color, $stroke-opacity);
+
+	// The above is the fallback. Below is the native css3 that requires the prefix;
+   // -webkit-text-fill-color: $text-color; /* Will override color (regardless of order) */
+   // -webkit-text-stroke-width: $stroke-width;
+   // -webkit-text-stroke-color: rgba($stroke-color, $stroke-opacity);
 }
 
 // Class imports. Uncomment the ones you want to use.
@@ -160,8 +166,7 @@ window, html, body{
 	.passes__count{
 		@include agate();
 		@include text_stroke(white, black, 2px, .5, 3px);
-		// color:white;
-	    // text-shadow: 0px 0px 8px black;
+		font-weight: bold;
 
 		&.hidden{
 			display: none;

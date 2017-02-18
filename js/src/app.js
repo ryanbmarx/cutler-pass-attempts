@@ -81,12 +81,12 @@ function visualizeData(data){
                 .select('.passes__count')
                     .style('opacity',0)
                     .text(`${passTotal[0]}/${passTotal[0]+passTotal[1]}`)
-                    .style('font-weight', () => {
-                        return passTotal[0]+passTotal[1] > 0 ? "bold" : "normal";
+                    .style('color', () => {
+                        return passTotal[0]+passTotal[1] > 0 ? "white" : "transparent";
                     })
-                    // .style('color', () => {
-                    //     return passTotal[0]+passTotal[1] > -1 ? "white" : "transparent";
-                    // })
+                    .style('text-shadow', () => {
+                        return passTotal[0]+passTotal[1] > 0 ? "" : "none";
+                    })
                     .transition()
                     .duration(1000)
                     .style('opacity',1);
