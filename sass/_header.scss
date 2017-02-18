@@ -16,13 +16,10 @@
 	}
 	&__title{
 		@include serif-text(70px, 1.15em, normal);
-		@include text_stroke(black, white, 1px, .75);
+		@include text_stroke(black, white, 1px, .65, 4px);
 		text-align: center;
 	    margin: 0 0 40px 0;
 	    padding: 0;
-	    // text-shadow: 0 0 5px rgba(white, .75);
-	    // background:rgba($bears-orange, .3);
-	      // color: black;
 	}
 
  	&__total{
