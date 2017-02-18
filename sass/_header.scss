@@ -44,6 +44,7 @@
 	    margin:0 auto 15px auto;
 	
 		.header__title{
+			@include text_stroke(black, white, 1px, .55);
 			font-size:37px;
 		    margin: 0 0 20px 0;
 		}
