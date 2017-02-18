@@ -1,0 +1,47 @@
+
+.trb_mainContent .header{
+	
+	// width:500px;
+	background: url(../img/header.jpg) bottom center no-repeat;
+	background-size:contain;
+	height:500px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    margin: 0 0 15px 0;
+	&__image{
+		max-width: 400px;
+		float:right;
+		display:none;
+	}
+	&__title{
+		@include serif-text(70px, 1.15em, normal);
+		text-align: center;
+	    margin: 0;
+	    padding: 0;
+	    text-shadow: 0 0 3px rgba(white, .65);
+	}
+
+ 	&__total{
+		color:$bears-orange;
+		font-weight:bold;
+	}
+}
+
+@media all and (max-width:$tablet-max-width){
+	.trb_mainContent .header .header__title{
+		font-size:60px;
+	}
+}
+
+@media all and (max-width:550px){
+	.trb_mainContent .header {
+	    height: 320px;
+	    width:280px;
+	    margin:0 auto 15px auto;
+	
+		.header__title{
+			font-size:37px;
+		}
+	}
+}

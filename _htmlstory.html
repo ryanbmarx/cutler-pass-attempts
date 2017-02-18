@@ -20,11 +20,14 @@
 {% block library_scripts %}
 {# Uncomment this if you are using libraries such as jQuery #}
 <script src="//{{ ROOT_URL }}/js/vendor.min.js"></script>
+
 {% endblock %}
 
 {% block scripts %}
 {# Uncomment this if you are using custom JavaScript #}
 <script src="//{{ ROOT_URL }}/js/app.min.js"></script>
+<script src="//{{ ROOT_URL }}/js/fittext.js"></script>
+
 <script>
 	(function(document) {
 		window.ROOT_URL = "{{ ROOT_URL }}";
@@ -37,6 +40,9 @@
 			link.setAttribute('href', url);
 			document.head.appendChild(link);
 		});
+
+	  // window.fitText( document.querySelectorAll("#headline span") );
+
 	})(document);
 </script>
 {% endblock scripts %}
