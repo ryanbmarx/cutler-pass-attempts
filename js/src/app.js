@@ -36,7 +36,7 @@ function initChart(){
         .range([0, maxCircleDiameter]);
 
     // Update the total in the bar chart
-    d3.select('.chart__total')
+    d3.select('.bar-chart__total')
         .text(d3.format(',')(window.baseTotal));
 
     drawLegend(window.rScale);
@@ -120,6 +120,9 @@ function visualizeData(data){
 
     d3.select('.bar-chart__now-showing')
         .text(d3.format(',')(window.filteredTotal));
+
+    // d3.select('.bar-chart__total')
+    //     .text(d3.format(',')(window.baseTotal));
     
     d3.select('.bar-chart__total-games')
         .text(d3.format(',')(window.totalFilteredGames));
