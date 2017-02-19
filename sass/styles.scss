@@ -181,6 +181,8 @@ window, html, body{
 @media all and (max-width: $tablet-max-width){
 	.legend__circle, .passes__circle{
 		transform:scale(.7);
+
+		.passes__count{ transform:scale(1.3); }
 	}
 }
 
@@ -188,5 +190,8 @@ window, html, body{
 	@import 'mobile-pass-chart';
 	.legend__circle, .passes__circle{
 		transform:scale(.5);
+		.passes__count{
+			transform:scale(1.2) rotate(90deg); 
+		}
 	}
 }
