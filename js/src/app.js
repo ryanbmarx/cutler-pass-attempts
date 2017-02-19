@@ -120,28 +120,13 @@ function visualizeData(data){
 
     d3.select('.bar-chart__now-showing')
         .text(d3.format(',')(window.filteredTotal));
-
-    // d3.select('.bar-chart__total')
-    //     .text(d3.format(',')(window.baseTotal));
     
     d3.select('.bar-chart__total-games')
         .text(d3.format(',')(window.totalFilteredGames));
 
+    // Update the completion percentage pie chart
     let completionPercentage = window.completedPasses / window.filteredTotal;
-    // let completionPercentageChart = d3.select('#completion-percentage-chart');
-    // completionPercentageChart.selectAll('*').remove();
-    // completionPercentageChart.append('div')
-        // .classed('pie', true)
-        // .classed(`turn${Math.round(completionPercentage * 100)}`, true);
-
     drawPieChart('#completion-percentage-chart', completionPercentage);
-    //         <div class='pie turn0'>
-    //     <small>0%</small>
-    // </div>
-
-    // d3.select('.completion-percentage')
-    //     .text(`<p>Completion percentage: ${d3.format('.1%')(completionPercentage)} (${window.completedPasses} / ${window.filteredTotal})</p>`)
-
 }
 
 function drawChart(){
@@ -240,7 +225,7 @@ window.onload = function(){
             
         });
     }
-
+    
     // Loading the data
 	d3.csv(`//${window.ROOT_URL}/data/pass-attempts.csv`, data => {
         // Start by taking the main data file, slicing off the header_descriptons row.
