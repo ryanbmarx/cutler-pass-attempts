@@ -159,10 +159,12 @@
 		{{ section_header("Player", "players", "open") }}
 		{# <div class='filters__section filters__section--players filters__section--closed'> #}
 			{% for receiver in receivers|sort(attribute="name_last") %}
-			<button class='filter-button filter-button--player' data-filter-category='RECEIVER_ID' data-position="{{ receiver.position }}" data-filter-value="{{receiver.id}}">
-				<img style='height:45px;width:45px;' src='http://{{ ROOT_URL }}/img/mugs/{{receiver.name_last|lower}}-{{receiver.name_first|lower}}.jpg' alt="Chicago Bear {{ receiver.name_first }} {{ receiver.name_last }} ({{ receiver.position }})"/>
-				{{ receiver.name_first }} {{ receiver.name_last }} ({{ receiver.position }})
-			</button> 
+				{% set mug_url = "../img/mugs/xouts/" ~ receiver.name_first|lower ~ receiver.name_last|lower ~ ".png" %}
+
+				<button class='filter-button filter-button--player' data-filter-category='RECEIVER_ID' data-position="{{ receiver.position }}" data-filter-value="{{receiver.id}}">
+					<span style="background-image:url({{ mug_url }});"></span>
+					{{ receiver.name_first }}<br /> {{ receiver.name_last }}<br />({{ receiver.position }})
+				</button> 
 			{% endfor %}
 		</div> {# /filters__section#}
 	</div>
