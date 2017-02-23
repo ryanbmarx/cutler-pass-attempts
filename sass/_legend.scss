@@ -1,14 +1,15 @@
-$legend_svg_width: 100px;
+$legend_svg_width: 118px;
 .trb_mainContent .legend {
 	@include clearfix();
 	margin-bottom:15px;
 	border:1px solid $bears-orange;
 	padding:20px;
 
+
 	&__content{
 		margin-left: $legend_svg_width + 25px;
 
-				p:first-child{
+		p:first-child{
 			margin-top:0;
 		}
 	}
@@ -18,37 +19,58 @@ $legend_svg_width: 100px;
 		margin: 0 0 10px 0;
 	}
 
-
-
-	// The SVG stuff
-
-	&__container{
-		width:$legend_svg_width;
-		float:left;
+	&__circles-container{
+		position:relative;
+		margin: 15px auto;
 	}
 
-	.legend__circle--all {
-		fill:$all_passes_color;
+	.legend__circle{
+		border-radius:50%;
+		position:absolute;
+		&--all {
+			background:$all_passes_color;
+			top:0;
+			left:0;
+		}
+
+		&--complete {
+			background:$complete_passes_color;
+			top:50%;
+			left:50%;
+		}
 	}
 
-	.legend__circle--complete {
-		fill:$complete_passes_color;
-	}
-	
 	.legend__label{
 		@include sans-serif();
+		text-align:center;
+		margin:0;
+		z-index: 1000;
+		background: white;
 	}
 
 	.legend__line{
-		stroke-width:2;
-
+		width:2px;
+		position:absolute;
+		left:50%;
+		margin: 0 0 0 -1px;
+		
 		&--all{
-			stroke:$all_passes_color;
+			background:$all_passes_color;
+			top:0;
+			height:60px;
 		}
 
 		&--complete{
-			stroke:$complete_passes_color;
+			background:$complete_passes_color;
+			bottom: 0;
+			height: 110px;
 		}
+	}
+
+	&__container{
+		position:relative;
+		width:$legend_svg_width;
+		float:left;
 	}
 }
 
@@ -63,5 +85,10 @@ $legend_svg_width: 100px;
 	}
 	&--complete{
 		background-color: $complete_passes_color;
+	}
+}
+@media all and (max-width: $mobile-max-width){
+	.trb_mainContent .legend {
+		.legend__line--all{ height:70px; }
 	}
 }
