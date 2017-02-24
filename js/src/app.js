@@ -103,15 +103,14 @@ function visualizeData(data){
 
         d3.select('.bar-chart__bar-label').remove();
         if(total_width * barWidthAsPercentage > 150){
-            
             d3.select('.bar-chart__bar')
                 .append('small')
+                .style('color', 'white')
                 .classed('bar-chart__bar-label', true);
-
         } else {
-            
             d3.select('.bar-chart__bar-wrapper')
                 .append('small')
+                .style('color', 'black')
                 .classed('bar-chart__bar-label', true);
         }
 
