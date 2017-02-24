@@ -57,6 +57,20 @@ function collectChoices(){
             range:[document.getElementById('yac_min').value, document.getElementById('yac_max').value]
         }
     ]
+
+   
+    window.dropdowns = [
+        {
+            id:"season",
+            columnHeader:'SEASON',
+            value:document.getElementById('season').value
+        },
+        {
+            id:"week",
+            columnHeader:'WEEK',
+            value:document.getElementById('week').value
+        }
+    ]
     return flatChoices;
 }
 

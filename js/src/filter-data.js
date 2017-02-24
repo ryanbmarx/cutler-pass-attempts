@@ -31,6 +31,19 @@ function filterData(){
                 })
         })
 
+        window.dropdowns.forEach( dropdown => {
+            filteredData = _.filter(filteredData, pass => {
+                if (dropdown.value == 'all'){
+                    // true if no selection has been made.
+                    return true 
+                } else if (dropdown.value == pass[dropdown.columnHeader]) {
+                    // If a selection has been made, then match it to the passes
+                    return true;
+                }
+                return false
+            })
+        });
+
         // Number of pass attempts in filtered set
         window.filteredTotal = filteredData.length;
         

@@ -114,6 +114,21 @@
 				<button class='filter-button' data-filter-category='TIME_BUCKET' data-filter-value="Early">Early</button>
 				<button class='filter-button' data-filter-category='TIME_BUCKET' data-filter-value="Late">Late</button>
 				<button class='filter-button' data-filter-category='TIME_BUCKET' data-filter-value="Primetime">Primetime</button>
+				<p class='filters__column-label'>Season</p>
+				<select id='season' class='filters__dropdown'>
+					<option value='all'>All years</option>
+					{% for year in range (2009, 2017) %}
+						<option value={{ year }}>{{ year }}</option>
+					{% endfor %}
+				</select>
+				<p class='filters__column-label'>Regular Season Week</p>
+				<select id='week' class='filters__dropdown'>
+						<option value='all'>All weeks</option>
+					{% for week in range (1, 18) %}
+						<option value={{ week }}>{{ week }}</option>
+					{% endfor %}
+				</select>
+
 			</div>
 		</div> {# /filters__section#}
 
