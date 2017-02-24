@@ -156,7 +156,7 @@
 		</div> {# /filters__section#}
 
 		{# #################################### #}
-		{{ section_header("Player", "players", "open") }}
+		{{ section_header("Player", "players", "closed") }}
 		{# <div class='filters__section filters__section--players filters__section--closed'> #}
 			{% for receiver in receivers|sort(attribute="name_last") %}
 				{% set mug_url = "../img/mugs/" ~ receiver.name_first|lower ~ receiver.name_last|lower ~ ".png" %}
