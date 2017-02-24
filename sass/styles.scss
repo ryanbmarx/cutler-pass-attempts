@@ -5,8 +5,8 @@ $column_width:(100% / 9);
 $column_height:90px;
 
 $circle_dimension:1px;
-$complete_passes_color:$bears_blue;
-$all_passes_color:$bears_orange;
+$complete_passes_color:$bears_orange;
+$all_passes_color:lighten($bears_orange, 45%);
 
 $tablet-max-width:850px;
 $mobile-max-width:450px;
@@ -157,10 +157,11 @@ window, html, body{
     z-index: 1000;
 	transition: all 400ms;
 	&--all{
-		background-color:rgba($all_passes_color, .51);
+		background-color:$all_passes_color;
+		opacity: .75;
 	}
 	&--complete{
-		background-color:rgba($complete_passes_color, 1);	
+		background-color:$complete_passes_color;	
 	}
 
 	.passes__count{
