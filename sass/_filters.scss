@@ -1,7 +1,11 @@
+$player_mugshot_dimension:45px;
+$player_mugshot_margin:15px;
+
+
 .filters__section{
 	display:flex;
 	justify-content:space-between;
-	align-items: flex-start;
+	align-items: stretch;
 	flex-wrap:wrap;
 	margin:0 0 25px 0;
 	overflow: hidden;
@@ -111,7 +115,7 @@
 	@include agate();
 	display: block;
 	z-index:1000;
-	padding: 15px 0;
+	padding: $player_mugshot_margin 0;
 	margin: 0 0 10px 0;
 	width: 100%;
 	border:1px solid $trib-gray3;
@@ -199,27 +203,36 @@
 		text-align:center;
 	}
 }
+
+
+
 .filters__section--players{
 	.filter-button{
 		@include clearfix();
 		width: 24%;
 		overflow: hidden;
-		display: flex;
-		justify-content: flex-start;
-		align-items:center;
-		text-align:left;
+		display:block;
+		&__name{
+			display: flex;
+			justify-content: flex-start;
+			align-items:center;
+			text-align:left;
+			margin-left:$player_mugshot_dimension + $player_mugshot_margin + 15px;
+			margin-right: $player_mugshot_margin;
+			height:$player_mugshot_dimension;
+		}
 
 		span{
 			// Most of these styles are inline to prevent massive mugshots before CSS loads via JS.
 			display:block;
 			float:left;
 			
-			width:45px;
-			height:45px;
+			width:$player_mugshot_dimension;
+			height:$player_mugshot_dimension;
 			
 			border-radius:50%;
 			border:3px solid $trib-gray4;
-			margin:0 15px 0 7px;
+			margin:0 0 0 $player_mugshot_margin;
 		    
 		    background-size: 130%;
 		    background-position:top center;
@@ -235,6 +248,29 @@
 }
 
 @media all and (max-width: $tablet-max-width){
+	.filters__section--players .filter-button{ width: 32%; }
+}
+
+@media all and (max-width: 600px){
+	// A special case just for the player buttons.
+	.filters__section--players {
+		.filter-button{ 
+			&__name{
+				text-align: center;	
+				display:block;
+				margin-left: auto;
+				margin-right: auto;
+				height: auto;
+				max-width:90px;
+			}
+			
+			span{
+				float:none;
+				margin: 0 auto 7px auto;
+			}
+		}
+	}
+
 
 }
 
@@ -250,17 +286,7 @@
 
 	.filters__column{ width: 100%; }
 	
-	.filters__section--players {
-		.filter-button{ 
-			flex-direction: column-reverse;
-			width: 31%;
-			text-align: center;
-			img{
-				display: block;
-				margin:7px auto;
-			}
-		}
-	}
+
 	// .filters__section--receivers .filter-button{}
 	.filters__section--divisions, 
 	.filters__section--teams {
