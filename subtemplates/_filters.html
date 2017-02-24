@@ -22,8 +22,8 @@
 			<div class='filters__column'>
 				<button class='filter-button' data-filter-category='COMPLETION' data-filter-value=1>COMPLETE</button>
 				<button class='filter-button' data-filter-category='COMPLETION' data-filter-value=0>INCOMPLETE</button>
-				<button class='filter-button' data-filter-category='TD' data-filter-value=1>TD</button>
-				<button class='filter-button' data-filter-category='TD' data-filter-value=0>NOT A TD</button>
+				<button class='filter-button filter-button--half' data-filter-category='TD' data-filter-value=1>TD</button>
+				<button class='filter-button filter-button--half' data-filter-category='TD' data-filter-value=0>NOT A TD</button>
 			</div>
 			<div class='filters__column'>
 				<form id='yards-in-air' class='yards-form'>
@@ -57,11 +57,17 @@
 		{{ section_header("Game situation", "game-situation", "open") }}
 		{# <div class='filters__section filters__section--game-situation'> #}
 			<div class='filters__column'>
+				<p class='filters__column-label'>QB Formation</p>	
+				<button class='filter-button' data-filter-category='QB_POSITION' data-filter-value="Shotgun">Shotgun</button>
+				<button class='filter-button' data-filter-category='QB_POSITION' data-filter-value="Pistol">Pistol</button>
+				<button class='filter-button' data-filter-category='QB_POSITION' data-filter-value="Under Center">Under center</button>		
+			</div>
+			<div class='filters__column'>
 				<p class='filters__column-label'>Down & Distance</p>
-				<button class='filter-button' data-filter-category='DOWN' data-filter-value=1>1st down</button>	
-				<button class='filter-button' data-filter-category='DOWN' data-filter-value=2>2nd down</button>	
-				<button class='filter-button' data-filter-category='DOWN' data-filter-value=3>3rd down</button>	
-				<button class='filter-button' data-filter-category='DOWN' data-filter-value=4>4th down</button>
+				<button class='filter-button filter-button--half' data-filter-category='DOWN' data-filter-value=1>1st down</button>	
+				<button class='filter-button filter-button--half' data-filter-category='DOWN' data-filter-value=2>2nd down</button>	
+				<button class='filter-button filter-button--half' data-filter-category='DOWN' data-filter-value=3>3rd down</button>	
+				<button class='filter-button filter-button--half' data-filter-category='DOWN' data-filter-value=4>4th down</button>
 				<form id='yards-to-go' class='yards-form'>
 					<label class='main-label'>Yards to go</label>
 					<div class='field-wrapper'>
@@ -74,19 +80,14 @@
 					</div>
 				</form>
 			</div>
-			<div class='filters__column'>
-				<p class='filters__column-label'>QB Formation</p>	
-				<button class='filter-button' data-filter-category='QB_POSITION' data-filter-value="Shotgun">Shotgun</button>
-				<button class='filter-button' data-filter-category='QB_POSITION' data-filter-value="Pistol">Pistol</button>
-				<button class='filter-button' data-filter-category='QB_POSITION' data-filter-value="Under Center">Under center</button>		
-			</div>
+
 			<div class='filters__column'>
 				<p class='filters__column-label'>Quarter</p>
-				<button class='filter-button' data-filter-category='QTR' data-filter-value=1>1st quarter</button>
-				<button class='filter-button' data-filter-category='QTR' data-filter-value=2>2nd quarter</button>
-				<button class='filter-button' data-filter-category='QTR' data-filter-value=3>3rd quarter</button>
-				<button class='filter-button' data-filter-category='QTR' data-filter-value=4>4th quarter</button>
-				<button class='filter-button' data-filter-category='QTR' data-filter-value=5>Overtime</button>
+				<button class='filter-button filter-button--half' data-filter-category='QTR' data-filter-value=1>1st</button>
+				<button class='filter-button filter-button--half' data-filter-category='QTR' data-filter-value=2>2nd</button>
+				<button class='filter-button filter-button--half' data-filter-category='QTR' data-filter-value=3>3rd</button>
+				<button class='filter-button filter-button--half' data-filter-category='QTR' data-filter-value=4>4th</button>
+				<button class='filter-button  filter-button--half' data-filter-category='QTR' data-filter-value=5>Overtime</button>
 			</div>			
 		</div> {# /filters__section#}
 
@@ -128,12 +129,11 @@
 						<option value={{ week }}>{{ week }}</option>
 					{% endfor %}
 				</select>
-
 			</div>
 		</div> {# /filters__section#}
 
 		{# #################################### #}
-		{{ section_header("Division", "divisions", "closed") }}
+		{{ section_header("Opponents (division)", "divisions", "closed") }}
 		{# <div class='filters__section filters__section--divisions filters__section--closed'> #}
 			{% for conference in ["NFC", "AFC"] %}
 				{% for division in ["North", "South", "East", "West"]%}
@@ -148,7 +148,7 @@
 		</div> {# /filters__section#}
 
 		{# #################################### #}
-		{{ section_header("Team", "teams", "closed") }}
+		{{ section_header("Opponents (teams)", "teams", "closed") }}
 		{# <div class='filters__section filters__section--closed filters__section--teams'> #}
 			{% for opponent in opponents|sort(attribute="team") %}
 			<button class='filter-button' data-filter-category='OPP' data-filter-value="{{opponent.team}}" data-conference="{{ opponent.conference }}" data-division="{{ opponent.division }}">

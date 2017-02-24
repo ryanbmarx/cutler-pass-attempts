@@ -105,10 +105,18 @@ $player_mugshot_margin:15px;
 
 .trb_mainContent .filters__column-label{
 	@include sans-serif-text(16px, 1.3em, bold);
+    width: 100%;
 }
 
 .filters__column{
 	width: 31%;
+
+	// Addition
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    align-content: flex-start;
 }
 
 .trb_mainContent .filter-button{
@@ -124,6 +132,7 @@ $player_mugshot_margin:15px;
 	color:black;
 	transition: all 150ms;
 	cursor:pointer;
+	text-transform:uppercase;
 
 	&:hover{
 		border-color:rgba($bears-blue, .1);
@@ -140,6 +149,10 @@ $player_mugshot_margin:15px;
 		font-weight: bold;
 		transition: all 150ms;
 	}
+
+	&.filter-button--half{
+		width: 48%;
+	}
 }
 
 .filters__dropdown{
@@ -149,7 +162,7 @@ $player_mugshot_margin:15px;
 .yards-form{
 	@include agate();
 	width:100%;
-	margin-bottom:10px;
+	margin:15px 0;
 	
 	.field-wrapper{
 		@include clearfix();
