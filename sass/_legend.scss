@@ -83,18 +83,16 @@ $legend_svg_width: 118px;
 	&--all{
 		// Test lightness of background
 		background-color: $all_passes_color;
-		@debug "all: #{lightness($all_passes_color)} #{lightness(#aaa)}";
-
 		@if lightness($all_passes_color) > lightness(#aaa){
 			color: black;
-		} @else {color: white;
+		} @else {
+			color: white;
 		}
 		
 	}
 	
 	&--complete{
 		background-color: $complete_passes_color;
-		@debug "complete: #{lightness($complete_passes_color)} #{lightness(#aaa)}";
 		@if lightness($complete_passes_color) > lightness(#aaa) {
 			color: black
 		} @else{
