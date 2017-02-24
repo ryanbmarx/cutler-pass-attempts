@@ -160,17 +160,17 @@ window.onload = function(){
     // ####   CHECKING/UNCHECKING FILTER BUTTONS
 
     for (var filterButton of document.getElementsByClassName('filter-button')){
-        filterButton.addEventListener('click', e => {
+        filterButton.addEventListener('click', function(e) {
+            console.log(e.target, 'clicked')
             // Toggle the checked data-* attribute on the actual button
-            e.target.dataset.checked = e.target.dataset.checked == "false" ? "true" : "false";
+            e.target.dataset.checked = e.target.dataset.checked == "true" ? "false" : "true";
         })
-        // Also do focus because without it, the buttons required a double click to register the event
-        filterButton.addEventListener('focus', e => {
-            // Toggle the checked data-* attribute on the actual button
-            e.target.dataset.checked = e.target.dataset.checked == "false" ? "true" : "false";
-        })
+        // // Also do focus because without it, the buttons required a double click to register the event
+        // filterButton.addEventListener('focus', e => {
+        //     // Toggle the checked data-* attribute on the actual button
+        //     e.target.dataset.checked = e.target.dataset.checked == "false" ? "true" : "false";
+        // })
     }
-
 
 
     // ####   SUBMIT BUTTONS
