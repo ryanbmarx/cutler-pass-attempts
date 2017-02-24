@@ -96,25 +96,33 @@
 		{# <div class='filters__section filters__section--schedule filters__section--closed'> #}
 			<div class='filters__column'>
 				<p class='filters__column-label'>Game Day</p>
-				<button class='filter-button' data-filter-category='WEEKDAY' data-filter-value=5>Thursday</button>
-				<button class='filter-button' data-filter-category='WEEKDAY' data-filter-value=7>Saturday</button>
-				<button class='filter-button' data-filter-category='WEEKDAY' data-filter-value=1>Sunday</button>
-				<button class='filter-button' data-filter-category='WEEKDAY' data-filter-value=2>Monday</button>
+				<button class='filter-button filter-button--half' data-filter-category='WEEKDAY' data-filter-value=5>Thursday</button>
+				<button class='filter-button filter-button--half' data-filter-category='WEEKDAY' data-filter-value=7>Saturday</button>
+				<button class='filter-button filter-button--half' data-filter-category='WEEKDAY' data-filter-value=1>Sunday</button>
+				<button class='filter-button filter-button--half' data-filter-category='WEEKDAY' data-filter-value=2>Monday</button>
+					<p class='filters__column-label'>Regular Season Week</p>
+				<select id='week' class='filters__dropdown'>
+						<option value='all'>All weeks</option>
+					{% for week in range (1, 18) %}
+						<option value={{ week }}>{{ week }}</option>
+					{% endfor %}
+				</select>
+				
 
 			</div>
 			<div class='filters__column'>
+			<p class='filters__column-label'>Kickoff time</p>
+				<button class='filter-button filter-button--half' data-filter-category='TIME_BUCKET' data-filter-value="Early">Early</button>
+				<button class='filter-button filter-button--half' data-filter-category='TIME_BUCKET' data-filter-value="Late">Late</button>
+				<button class='filter-button filter-button--half' data-filter-category='TIME_BUCKET' data-filter-value="Primetime">Primetime</button>
 				<p class='filters__column-label'>Location</p>
-				<button class='filter-button' data-filter-category='HOME_GAME' data-filter-value=1>At home</button>
-				<button class='filter-button' data-filter-category='HOME_GAME' data-filter-value=0>On road</button>
+				<button class='filter-button filter-button--half' data-filter-category='HOME_GAME' data-filter-value=1>Home</button>
+				<button class='filter-button filter-button--half' data-filter-category='HOME_GAME' data-filter-value=0>Road</button>
+			</div>
+			<div class='filters__column'>
 				<p class='filters__column-label'>Playoffs</p>
 				<button class='filter-button' data-filter-category='REG_OR_POST' data-filter-value="Reg">Regular Season</button>
 				<button class='filter-button' data-filter-category='REG_OR_POST' data-filter-value="Post">Postseason</button>
-			</div>
-			<div class='filters__column'>
-				<p class='filters__column-label'>Kickoff time</p>
-				<button class='filter-button' data-filter-category='TIME_BUCKET' data-filter-value="Early">Early</button>
-				<button class='filter-button' data-filter-category='TIME_BUCKET' data-filter-value="Late">Late</button>
-				<button class='filter-button' data-filter-category='TIME_BUCKET' data-filter-value="Primetime">Primetime</button>
 				<p class='filters__column-label'>Season</p>
 				<select id='season' class='filters__dropdown'>
 					<option value='all'>All years</option>
@@ -122,13 +130,7 @@
 						<option value={{ year }}>{{ year }}</option>
 					{% endfor %}
 				</select>
-				<p class='filters__column-label'>Regular Season Week</p>
-				<select id='week' class='filters__dropdown'>
-						<option value='all'>All weeks</option>
-					{% for week in range (1, 18) %}
-						<option value={{ week }}>{{ week }}</option>
-					{% endfor %}
-				</select>
+			
 			</div>
 		</div> {# /filters__section#}
 
