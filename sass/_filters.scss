@@ -142,6 +142,10 @@ $player_mugshot_margin:15px;
 	}
 }
 
+.filters__dropdown{
+	width:100%;
+}
+
 .yards-form{
 	@include agate();
 	width:100%;
