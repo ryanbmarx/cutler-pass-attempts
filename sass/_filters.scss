@@ -2,6 +2,10 @@ $player_mugshot_dimension:45px;
 $player_mugshot_margin:15px;
 
 
+#filters h2{
+	@include label5();
+}
+
 .filters__section{
 	display:flex;
 	justify-content:space-between;
