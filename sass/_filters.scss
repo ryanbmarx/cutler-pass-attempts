@@ -13,7 +13,6 @@ $player_mugshot_margin:15px;
 	flex-wrap:wrap;
 	margin:0 0 25px 0;
 	overflow: hidden;
-	// transition: all 500ms ease;
     border: 1px solid $trib-gray4;
     padding: 15px;
 
@@ -22,13 +21,7 @@ $player_mugshot_margin:15px;
 		margin:0;
 		padding:0;
 		border:none;
-		// transition: all 500ms ease;
 	}
-
-	// &--open{
-	// 	height:auto;
-	// 	transition: all 500ms ease;
-	// }
 }
 
 .filters__label{
@@ -83,7 +76,6 @@ $player_mugshot_margin:15px;
 .trb_mainContent .filters__submit{
 	// Back to top link in the section headers
 	@include sans-serif-text(14px, 1em, bold);
-	// font-style: italic;
 	background-color:rgba($bears-orange, .8);
 	transition:all 150ms;
 	color:white;
@@ -114,8 +106,6 @@ $player_mugshot_margin:15px;
 
 .filters__column{
 	width: 31%;
-
-	// Addition
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -313,7 +303,6 @@ $player_mugshot_margin:15px;
 	.filters__column{ width: 100%; }
 	
 
-	// .filters__section--receivers .filter-button{}
 	.filters__section--divisions, 
 	.filters__section--teams {
 		.filter-button{ width: 48% }

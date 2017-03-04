@@ -12,9 +12,7 @@ $pie-chart-dimension:80px;
 		.bar-chart{
 			margin-left:$pie-chart-dimension + 25px;
 		}
-
 	}
-
 
 	.bar-chart{
 		margin-bottom: 10px;
@@ -55,7 +53,7 @@ $pie-chart-dimension:80px;
 	.pie-chart{
 		// This chart is built with D3. What little CSS there is goes 
 		// toward positioning and keeping certain color choices in sync
-		height:$pie-chart-dimension +22px;
+		height:$pie-chart-dimension + 22px;
 		width:$pie-chart-dimension;
 		&__label{
 			@include sans-serif();

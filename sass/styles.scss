@@ -53,7 +53,6 @@ $mobile-max-width:450px;
 
 
 // ---- IMPORT PROJECT STYLES FROM PARTIAL FILES HERE ---------------------------------------------
-@import 'cutler-loader';
 @import 'control-buttons';
 @import 'filters';
 @import 'legend';
@@ -73,10 +72,6 @@ window, html, body{
 
 
 .passes{
-	// max-width:$chart_width;
-	// margin: 0 auto;
-	// border:12px solid rgba($trib_green1, .4);
-	// padding:10px;
 	background-color:rgba($trib_green1, .07);
 
 	&__viz{
