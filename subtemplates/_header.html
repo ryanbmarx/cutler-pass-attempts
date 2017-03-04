@@ -1,5 +1,6 @@
 <div class='header'>
 	<h1 class='header__title'>{{ header_title|process_text() }}</h1>
-	<img class='header__image' src='http://{{ ROOT_URL }}/img/header.jpg' alt="Jay Cutler photo illustration" />
+	{# max-width used here to keep photo from blowing out huge before CSS is downloaded b/c we use JS #}
+	<img style="max-width:400px;" class='header__image' src='http://{{ ROOT_URL }}/img/header.jpg' alt="Jay Cutler photo illustration" />
 </div>
 {{ intro|markdown }}

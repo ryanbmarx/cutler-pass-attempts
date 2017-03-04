@@ -10,7 +10,8 @@
     justify-content: center;
     margin: 0 0 15px 0;
 	&__image{
-		max-width: 400px;
+		// Set inline to keep photo from blowing up on loadtime
+		// max-width: 400px;
 		float:right;
 		display:none;
 	}
