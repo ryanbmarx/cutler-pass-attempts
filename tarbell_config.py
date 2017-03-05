@@ -7,11 +7,25 @@ from flask import Blueprint, g, render_template
 import ftfy
 import jinja2
 
-blueprint = Blueprint('greatest-team-cubs-sox-poll', __name__)
+blueprint = Blueprint('cutler-pass-by-pass', __name__)
 
 @blueprint.app_template_filter('get_label_keys')
 def get_label_keys(thing):
     return type(thing)
+
+@blueprint.app_template_filter('make_mug_name')
+def make_mug_name(receiver):
+    try:
+        name_first = clean_up_name(receiver['name_first'])
+    except KeyError:
+        name_first = ""
+
+    name_last = clean_up_name(receiver['name_last'])
+    return "{}{}".format(name_first, name_last)
+
+def clean_up_name(name):
+    return name.replace('\'', "").replace(' ', "").lower()
+    
 
 
 

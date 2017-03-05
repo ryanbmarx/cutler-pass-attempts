@@ -177,18 +177,14 @@
 		{{ section_header("Player", "players", "closed") }}
 		{# <div class='filters__section filters__section--players filters__section--closed'> #}
 			{% for receiver in receivers|sort(attribute="name_last") %}
-				{% set mug_url = "../img/mugs/" ~ receiver.name_first|lower ~ receiver.name_last|lower ~ ".png" %}
+				{% set mug_name = receiver|make_mug_name %}
+				{% set mug_url = "../img/mugs/" ~ mug_name ~ ".png" %}
 				<button class='filter-button filter-button--player' data-filter-category='RECEIVER_ID' data-position="{{ receiver.position }}" data-filter-value="{{receiver.id}}">
 					<span style="background-image:url({{ mug_url }});"></span>
 					<div class='filter-button__name'>
 						{{ receiver.name_first }} {{ receiver.name_last }} ({{ receiver.position }})
 					</div>
 				</button> 
-{# 				<button class='filter-button filter-button--player' data-filter-category='RECEIVER_ID' data-position="{{ receiver.position }}" data-filter-value="{{receiver.id}}">
-					<span style="background-image:url({{ mug_url }});"></span>
-					{{ receiver.name_first }}<br /> {{ receiver.name_last }}<br />({{ receiver.position }})
-				</button>  #}
-
 			{% endfor %}
 		</div> {# /filters__section#}
 	</div>
