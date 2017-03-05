@@ -33,7 +33,7 @@ def clean_up_name(name):
 SPREADSHEET_KEY = "1ZXvIfK-UR8Y6x1dEr7KNs6gLs5M_vxS1yY51hMa39nc"
 
 # Exclude these files from publication
-EXCLUDES = ['subtemplates', 'img/mugs/src', 'img/svgSrc/','*.md', 'requirements.txt', 'node_modules', 'sass', 'js/src', 'package.json', 'Gruntfile.js']
+EXCLUDES = ['scripts', 'subtemplates', 'img/mugs/src', 'img/svgSrc/','*.md', 'requirements.txt', 'node_modules', 'sass', 'js/src', 'package.json', 'Gruntfile.js']
 
 # Spreadsheet cache lifetime in seconds. (Default: 4)
 # SPREADSHEET_CACHE_TTL = 4
